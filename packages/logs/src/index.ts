@@ -5,10 +5,7 @@ interface LoggerOptions {
   prettyPrint?: boolean;
 }
 
-function createLogger({
-  level = "info",
-  prettyPrint = false,
-}: LoggerOptions = {}) {
+function createLogger({ level = "info", prettyPrint = false }: LoggerOptions = {}) {
   const options: pino.LoggerOptions = {
     level,
     formatters: {

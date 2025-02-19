@@ -6,7 +6,8 @@
   "types": "src/index.ts",
   "keywords": [],
   "scripts": {
-    "test": "vitest run -c ./vitest.config.ts"
+    "test": "vitest run -c ./vitest.config.ts",
+    "format": "biome format --write ."
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
