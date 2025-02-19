@@ -1,12 +1,14 @@
 {
   "name": "api",
+  "type": "module",
   "scripts": {
-    "dev": "bun run --hot src/index.ts"
+    "start": "vercel dev",
+    "deploy": "vercel"
   },
   "dependencies": {
     "hono": "^4.7.2"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "vercel": "^41.1.4"
   }
 }
