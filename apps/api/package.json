@@ -7,6 +7,10 @@
     "format": "biome format --write ."
   },
   "dependencies": {
+    "@repo/db": "workspace:*",
+    "@repo/id": "workspace:*",
+    "@repo/logs": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "hono": "^4.7.2"
   },
   "devDependencies": {
