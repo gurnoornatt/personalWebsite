@@ -2,23 +2,9 @@ import baseX from "base-x";
 
 const b58 = baseX("123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz");
 
+// Customize the prefixes as needed
 const prefixes = {
-  mealPlan: "mp",
-  mealPlanRecipe: "mpr",
-  recipe: "recipe",
-  account: "acc",
-  userRecipe: "userRecipe",
-  ingredient: "ingred",
-  groceryList: "groc",
-  collection: "coll",
-  collectionRecipe: "collRec",
-  fitnessProfile: "fp",
-  food: "food",
-  file: "file",
-  message: "msg",
-  conversation: "conv",
-  chat: "chat",
-  mealPlanItem: "mpItem",
+  post: "post",
 } as const;
 
 export function newId<TPrefix extends keyof typeof prefixes>(prefix: TPrefix) {
