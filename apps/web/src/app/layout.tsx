@@ -1,29 +1,48 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
+import { TailwindIndicator } from "@/components/tailwind-indicator";
+import { Toaster } from "@/components/ui/sonner";
+import { VercelAnalytics } from "@/lib/analytics/vercel";
+import { geistMono, geistSans } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
+import { Providers } from "@/providers/providers";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-});
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Webapp Starter Template",
   description: "A monorepo template for building webapps - optimized for ai.",
 };
-
-export default function RootLayout({
-  children,
-}: Readonly<{
+interface RootLayoutProps {
   children: React.ReactNode;
-}>) {
+}
+
+export const viewport: Viewport = {
+  colorScheme: "dark light",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
+};
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body>
+    <html suppressHydrationWarning lang="en">
+      <head>{/* <GoogleAnalytics gaId="G-2L23D2FV55" /> */}</head>
+      <body
+        className={cn(
+          "bg-background min-h-screen font-sans antialiased",
+          geistMono.variable,
+          geistSans.variable,
+        )}
+      >
+        <Providers attribute="class" defaultTheme="system" enableSystem>
+          {children}
+          <TailwindIndicator />
+          <Toaster />
+        </Providers>
+        <VercelAnalytics />
+      </body>
     </html>
   );
 }

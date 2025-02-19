@@ -1,12 +1,12 @@
+"use client";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-function VercelAnalytics() {
-  return <Analytics />;
+export function VercelAnalytics() {
+  return (
+    <>
+      <Analytics />
+      <SpeedInsights />
+    </>
+  );
 }
-
-function VercelSpeedInsights() {
-  return <SpeedInsights />;
-}
-
-export { VercelAnalytics, VercelSpeedInsights };
