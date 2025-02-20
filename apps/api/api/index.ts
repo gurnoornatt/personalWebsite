@@ -1,6 +1,6 @@
-import { postRoutes } from "@/modules/posts/post.route";
 import { Hono } from "hono";
 import { handle } from "hono/vercel";
+import { postRoutes } from "./modules/posts/post.routes";
 
 const app = new Hono().basePath("/api");
 
