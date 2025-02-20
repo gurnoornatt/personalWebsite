@@ -3,9 +3,9 @@ import { postService } from "./post.service";
 import { auth } from "@/pkg/middleware/clerk-auth";
 
 const postRoutes = new Hono()
-  //   .use(auth())
+  .use(auth())
   .get("/", async (c) => {
-    // const posts = await postService.getPosts();
+    const posts = await postService.getPosts();
     return c.json({ message: "Hello, world!" });
   })
   .post("/", async (c) => {

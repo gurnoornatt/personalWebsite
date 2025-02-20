@@ -2,8 +2,8 @@
   "name": "api",
   "type": "module",
   "scripts": {
-    "api:dev": "vercel dev",
-    "deploy": "vercel",
+    "dev": "bun run --hot src/index.ts",
+    "start": "bun run src/index.ts",
     "format": "biome format --write ."
   },
   "dependencies": {
@@ -18,7 +18,7 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@types/node": "^22.13.4",
+    "@types/bun": "latest",
     "vercel": "^41.1.4"
   }
 }
