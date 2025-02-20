@@ -7,7 +7,13 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": ["node_modules", "dist", ".turbo", ".vercel", ".next"]
+    "ignore": [
+      "node_modules",
+      "dist",
+      ".turbo",
+      ".vercel",
+      ".next"
+    ]
   },
   "formatter": {
     "enabled": true,
@@ -19,7 +25,6 @@
   },
   "linter": {
     "enabled": true,
-
     "rules": {
       "recommended": true,
       "a11y": {
@@ -30,7 +35,8 @@
         "useTemplate": "off",
         "useBlockStatements": "off",
         "noUnusedTemplateLiteral": "off",
-        "noUselessElse": "off"
+        "noUselessElse": "off",
+        "useImportType": "off"
       },
       "correctness": {
         "useExhaustiveDependencies": "off"

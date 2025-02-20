@@ -9,7 +9,7 @@ export default function Home() {
       <main className="container mx-auto px-4 py-16">
         {/* Hero Section */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-foreground mb-4">Full-Stack Monorepo Template</h1>
+          <h1 className="text-4xl font-bold text-fmuted mb-4">Full-Stack Monorepo Template</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Built with Bun, Hono, Next.js, and shadcn/ui
           </p>
@@ -88,7 +88,7 @@ export default function Home() {
             <CardHeader>
               <CardTitle>Backend Stack</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-8">
               <ul className="space-y-2 text-muted-foreground">
                 <li className="flex items-center gap-2">
                   <ArrowRight className="h-4 w-4" /> Bun runtime for TypeScript
@@ -109,7 +109,7 @@ export default function Home() {
 
         {/* CTA Section */}
         <div className="text-center space-x-4">
-          <Button asChild>
+          <Button>
             <Link href="/posts">View Demo</Link>
           </Button>
           <Button variant="outline" asChild>
