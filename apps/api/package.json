@@ -7,11 +7,14 @@
     "format": "biome format --write ."
   },
   "dependencies": {
+    "@hono/zod-validator": "^0.4.3",
     "@repo/db": "workspace:*",
     "@repo/id": "workspace:*",
     "@repo/logs": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "hono": "^4.7.2"
+    "hono": "^4.7.2",
+    "vitest": "^3.0.6",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "vercel": "^41.1.4"
