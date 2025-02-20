@@ -1,88 +1,105 @@
-# Turborepo starter
+# Full Stack Monorepo
 
-This Turborepo starter is maintained by the Turborepo core team.
+A modern full-stack application built with TurboRepo, featuring a Bun API backend and Next.js frontend.
 
-## Using this example
+## 🚀 Tech Stack
 
-Run the following command:
+### API (Backend)
+- [Bun](https://bun.sh/) - JavaScript runtime & toolkit
+- [Drizzle ORM](https://orm.drizzle.team/) - TypeScript ORM
+- [Supabase](https://supabase.com/) - PostgreSQL Database
 
-```sh
-npx create-turbo@latest
-```
+### Web (Frontend)
+- [Next.js](https://nextjs.org/) - React Framework
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS
+- [Shadcn/ui](https://ui.shadcn.com/) - UI Component Library
+- [Clerk](https://clerk.com/) - Authentication & User Management
 
-## What's inside?
+## 📦 Project Structure
 
-This Turborepo includes the following packages/apps:
+.
+├── apps/
+│   ├── api/         # Bun API backend
+│   └── web/         # Next.js frontend
+└── packages/        # Shared packages
 
-### Apps and Packages
+## 🛠️ Setup & Installation
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+1. **Clone the repository**
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+git clone <your-repo-url>
+cd <your-repo-name>
 
-### Utilities
+2. **Install dependencies**
 
-This Turborepo has some additional tools already setup for you:
+pnpm install
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+3. **Environment Setup**
 
-### Build
+Create .env files in both apps/api and apps/web:
 
-To build all apps and packages, run the following command:
+For apps/api/.env:
 
-```
-cd my-turborepo
-pnpm build
-```
+SUPABASE_URL=your_supabase_url
+SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
 
-### Develop
+For apps/web/.env:
 
-To develop all apps and packages, run the following command:
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
 
-```
-cd my-turborepo
+4. **Supabase Setup**
+- Create a new project on [Supabase](https://supabase.com)
+- Copy your project URL and API keys to the .env file
+- Run database migrations (if any) using Drizzle
+
+5. **Clerk Setup**
+- Create a new application on [Clerk](https://clerk.com)
+- Copy your API keys to the .env file
+- Configure your OAuth providers if needed
+
+## 🚀 Development
+
+Run the development server:
+
 pnpm dev
-```
 
-### Remote Caching
+This will start both the API and web applications in development mode:
+- API: http://localhost:3001
+- Web: http://localhost:3000
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+## 📤 Deployment
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+### Web (Next.js) on Vercel
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+1. Connect your repository to [Vercel](https://vercel.com)
+2. Select the web directory as your project root
+3. Add your environment variables
+4. Deploy!
 
-```
-cd my-turborepo
-npx turbo login
-```
+### API (Bun) on Render
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+1. Create a new Web Service on [Render](https://render.com)
+2. Connect your repository
+3. Configure the service:
+   - Build Command: cd ../.. && pnpm install && pnpm run build
+   - Start Command: bun run start
+   - Root Directory: apps/api
+4. Add your environment variables
+5. Deploy!
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+## 🤝 Contributing
 
-```
-npx turbo link
-```
+1. Fork the repository
+2. Create a new branch
+3. Make your changes
+4. Submit a pull request
 
-## Useful Links
+## 📝 License
 
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
-
-
-# webapp-starter
-A monorepo template for building webapps - optimized for ai.
+[MIT](LICENSE)
