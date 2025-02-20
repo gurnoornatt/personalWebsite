@@ -2,7 +2,7 @@
   "name": "api",
   "type": "module",
   "scripts": {
-    "start": "vercel dev",
+    "api:dev": "vercel dev",
     "deploy": "vercel",
     "format": "biome format --write ."
   },
