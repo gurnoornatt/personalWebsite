@@ -1,81 +1,129 @@
-import Image, { type ImageProps } from "next/image";
-
-import styles from "./page.module.css";
-
-type Props = Omit<ImageProps, "src"> & {
-  srcLight: string;
-  srcDark: string;
-};
-
-const ThemeImage = (props: Props) => {
-  const { srcLight, srcDark, ...rest } = props;
-
-  return (
-    <>
-      <Image {...rest} src={srcLight} className="imgLight" />
-      <Image {...rest} src={srcDark} className="imgDark" />
-    </>
-  );
-};
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
+import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-background">
       <main className="container mx-auto px-4 py-16">
         {/* Hero Section */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Welcome to My Website
-          </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            A modern web application built with Next.js and Tailwind CSS
+          <h1 className="text-4xl font-bold text-foreground mb-4">Full-Stack Monorepo Template</h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Built with Bun, Hono, Next.js, and shadcn/ui
           </p>
         </div>
 
         {/* Features Section */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-              Feature One
-            </h2>
-            <p className="text-gray-600 dark:text-gray-300">
-              Description of your first amazing feature goes here.
-            </p>
-          </div>
-          <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-              Feature Two
-            </h2>
-            <p className="text-gray-600 dark:text-gray-300">
-              Description of your second amazing feature goes here.
-            </p>
-          </div>
-          <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-              Feature Three
-            </h2>
-            <p className="text-gray-600 dark:text-gray-300">
-              Description of your third amazing feature goes here.
-            </p>
-          </div>
+        <div className="grid md:grid-cols-3 gap-6 mb-16">
+          <Card>
+            <CardHeader>
+              <CardTitle>Backend with Bun & Hono</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">
+                Lightning-fast API routes powered by Bun runtime and Hono framework for efficient
+                routing.
+              </p>
+            </CardContent>
+            <CardFooter>
+              <Link href="/posts">
+                <Button variant="link" className="p-0 h-auto font-medium">
+                  View Demo API
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </CardFooter>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Next.js Frontend</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">
+                Modern React with App Router, Server Components, and full TypeScript support.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Monorepo Structure</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">
+                Organized with Turborepo for efficient builds and shared packages.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Tech Stack Section */}
+        <div className="grid md:grid-cols-2 gap-6 mb-16">
+          <Card>
+            <CardHeader>
+              <CardTitle>Frontend Stack</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-2 text-muted-foreground">
+                <li className="flex items-center gap-2">
+                  <ArrowRight className="h-4 w-4" /> Next.js 14 with App Router
+                </li>
+                <li className="flex items-center gap-2">
+                  <ArrowRight className="h-4 w-4" /> React Query for data fetching
+                </li>
+                <li className="flex items-center gap-2">
+                  <ArrowRight className="h-4 w-4" /> shadcn/ui components
+                </li>
+                <li className="flex items-center gap-2">
+                  <ArrowRight className="h-4 w-4" /> Tailwind CSS for styling
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Backend Stack</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-2 text-muted-foreground">
+                <li className="flex items-center gap-2">
+                  <ArrowRight className="h-4 w-4" /> Bun runtime for TypeScript
+                </li>
+                <li className="flex items-center gap-2">
+                  <ArrowRight className="h-4 w-4" /> Hono for API routing
+                </li>
+                <li className="flex items-center gap-2">
+                  <ArrowRight className="h-4 w-4" /> Type-safe API endpoints
+                </li>
+                <li className="flex items-center gap-2">
+                  <ArrowRight className="h-4 w-4" /> Shared types across stack
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
         </div>
 
         {/* CTA Section */}
-        <div className="text-center">
-          <a
-            href="#"
-            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
-          >
-            Get Started
-          </a>
+        <div className="text-center space-x-4">
+          <Button asChild>
+            <Link href="/posts">View Demo</Link>
+          </Button>
+          <Button variant="outline" asChild>
+            <a href="https://github.com/your-repo" target="_blank" rel="noopener noreferrer">
+              GitHub
+            </a>
+          </Button>
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-gray-200 dark:border-gray-800">
+      <footer className="border-t">
         <div className="container mx-auto px-4 py-8">
-          <p className="text-center text-gray-600 dark:text-gray-400">
-            © 2024 Your Company. All rights reserved.
+          <p className="text-center text-muted-foreground">
+            © 2024 Full-Stack Template. Built with Bun and Next.js.
           </p>
         </div>
       </footer>

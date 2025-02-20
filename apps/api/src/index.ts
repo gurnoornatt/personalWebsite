@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 
-import { postRoutes } from "./modules/posts/post.routes";
+import { postRoutes } from "@/modules/posts";
 import { logger } from "hono/logger";
 import { errorHandler } from "@/pkg/middleware/error";
 

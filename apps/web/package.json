@@ -12,6 +12,7 @@
     "format": "biome format --write ."
   },
   "dependencies": {
+    "@clerk/clerk-js": "^5.53.0",
     "@clerk/nextjs": "^6.12.0",
     "@hookform/resolvers": "^4.1.0",
     "@radix-ui/react-accordion": "^1.2.3",
@@ -49,6 +50,7 @@
     "cmdk": "1.0.0",
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.5.2",
+    "hono": "^4.7.2",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.475.0",
     "next": "^15.1.6",
