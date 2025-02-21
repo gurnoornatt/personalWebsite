@@ -14,12 +14,22 @@ declare module "hono" {
 }
 
 export const getAuth = (c: Context) => {
-  return c.get("clerkAuth");
+  const clerkAuth = c.get("clerkAuth");
+
+  return clerkAuth;
+};
+
+export const getUserId = (c: Context) => {
+  const auth = getAuth(c);
+  if (!auth?.userId) {
+    throw new Error("Unauthorized");
+  }
+  return auth.userId;
 };
 
 type ClerkEnv = {
   CLERK_SECRET_KEY: string;
-  CLERK_PUBLISHABLE_KEY: string;
+  NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: string;
   CLERK_API_URL: string;
   CLERK_API_VERSION: string;
 };
@@ -29,7 +39,7 @@ export const auth = (options?: ClerkOptions): MiddlewareHandler => {
     const clerkEnv = env<ClerkEnv>(c);
     const { secretKey, publishableKey, apiUrl, apiVersion, ...rest } = options || {
       secretKey: clerkEnv.CLERK_SECRET_KEY || "",
-      publishableKey: clerkEnv.CLERK_PUBLISHABLE_KEY || "",
+      publishableKey: clerkEnv.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || "",
       apiUrl: clerkEnv.CLERK_API_URL,
       apiVersion: clerkEnv.CLERK_API_VERSION,
     };
@@ -72,4 +82,12 @@ export const auth = (options?: ClerkOptions): MiddlewareHandler => {
 
     await next();
   };
+};
+
+export const requireAuth: MiddlewareHandler = async (c, next) => {
+  const auth = getAuth(c);
+  if (!auth?.userId) {
+    return c.text("Unauthorized", 401);
+  }
+  await next();
 };

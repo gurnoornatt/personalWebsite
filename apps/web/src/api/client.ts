@@ -14,7 +14,7 @@ export const getApiClient = () => {
     fetch: async (input: RequestInfo | URL, init?: RequestInit) => {
       const headers = new Headers(init?.headers);
       const authToken = await getToken();
-
+      console.log("authToken", authToken);
       headers.set("Authorization", `Bearer ${authToken}`);
 
       const response = await fetch(input, {
