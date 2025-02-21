@@ -33,9 +33,9 @@
       "cache": false,
       "persistent": true
     },
-    "api:dev": {
-      "cache": false,
-      "persistent": true
-    }
+    "db:push": {},
+    "db:generate": {},
+    "db:migrate": {},
+    "db:studio": {}
   }
 }
