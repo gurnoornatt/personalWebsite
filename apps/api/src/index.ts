@@ -2,8 +2,10 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 
 import { postRoutes } from "@/modules/posts";
+
 import { logger } from "hono/logger";
 import { errorHandler } from "@/pkg/middleware/error";
+import { webhookRoutes } from "@/modules/webhooks/webhook.routes";
 
 const app = new Hono();
 
@@ -25,7 +27,11 @@ app.get("/health", (c) => {
   return c.text("OK");
 });
 
-const routes = app.basePath("/api").use("*", errorHandler()).route("/posts", postRoutes);
+const routes = app
+  .basePath("/api")
+  .use("*", errorHandler())
+  .route("/webhooks", webhookRoutes)
+  .route("/posts", postRoutes);
 
 export type AppType = typeof routes;
 
