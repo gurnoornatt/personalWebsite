@@ -4,7 +4,11 @@
   "tasks": {
     "build": {
       "env": [
-        "SUPABASE_SERVICE_KEY"
+        "DATABASE_URL",
+        "CLERK_SECRET_KEY",
+        "CLERK_PUBLISHABLE_KEY",
+        "CLERK_WEBHOOK_SECRET",
+        "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY"
       ],
       "dependsOn": [
         "^build"
