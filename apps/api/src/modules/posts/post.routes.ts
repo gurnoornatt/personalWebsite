@@ -3,13 +3,7 @@ import { Hono } from "hono";
 import { auth, getAuth, getUserId, requireAuth } from "@/pkg/middleware/clerk-auth";
 import { postService } from "@/modules/posts";
 import { zValidator } from "@/pkg/util/validator-wrapper";
-import { z } from "zod";
 import { postInsertSchema } from "@repo/db";
-
-const postSchema = z.object({
-  title: z.string(),
-  content: z.string(),
-});
 
 const postRoutes = new Hono()
   .use(auth())
