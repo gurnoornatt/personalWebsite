@@ -68,7 +68,7 @@ You are an expert TypeScript software engineer and architect with over 10 years 
 - For React, use Shadcn UI, Radix, and Tailwind for components and styling.
 - Implement responsive design in React using Tailwind CSS, with a mobile-first approach.
 - Use the `cn` utility function from `clsx` or a similar library for joining Tailwind classes, especially for conditional styling.
-- Always and only ever use Phospor icons.
+- Use new tailwind v4 semantic, i.e. size-4 instead of h-4 w-4 etc.
 
 
 ### Performance Optimization
