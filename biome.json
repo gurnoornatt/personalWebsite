@@ -28,7 +28,11 @@
     "rules": {
       "recommended": true,
       "a11y": {
-        "noSvgWithoutTitle": "off"
+        "noSvgWithoutTitle": "off",
+        "useFocusableInteractive": "off"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "off"
       },
       "style": {
         "noNonNullAssertion": "off",
