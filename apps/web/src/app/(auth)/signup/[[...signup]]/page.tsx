@@ -7,7 +7,7 @@ import { dark } from "@clerk/themes";
 export default function SignUpPage() {
   const { theme } = useTheme();
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="flex min-h-screen items-center justify-center">
       <SignUp appearance={{ baseTheme: theme === "dark" ? dark : undefined }} />
     </div>
   );

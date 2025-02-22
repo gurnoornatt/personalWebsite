@@ -1,6 +1,7 @@
-# Full Stack Monorepo
+# B(build)stack
 
-A modern full-stack application built with Turborepo, featuring a Hono + Bun API backend and Next.js frontend.
+A modern full-stack application template built with Turborepo, featuring a Hono + Bun API backend and Next.js frontend.
+Easiest way to build a SaaS.
 
 
 ### API (Backend)
@@ -75,6 +76,15 @@ CLERK_SECRET_KEY=your_clerk_secret_key
 NEXT_PUBLIC_API_URL=your_api_url
 ```
 
+To run migrations and push db schema locally create a `.env` file in `packages/db` and add your database url.
+
+`packages/db/.env`
+```
+DATABASE_URL=your_database_url
+```
+
+
+
 1. **Supabase Setup (Any postgres DB will work)**
 - Create a new project on [Supabase](https://supabase.com)
 - Copy your database url to the .env file
@@ -88,13 +98,13 @@ NEXT_PUBLIC_API_URL=your_api_url
 
 #### Webhooks
 There is a webhook setup in clerk for the api to handle user creation and authentication. 
-Use this to setup a sync between clerk and the user database. Further details can be found in the api readme.
+Use this to setup a sync between clerk and the user database. Further details can be found in the [api readme](apps/api/README.md).
 
 ## Development
 
 Run the development server:
 
-turbo dev
+`turbo dev`
 
 This will start both the API and web applications in development mode:
 - API: http://localhost:3004
@@ -107,27 +117,20 @@ This will start both the API and web applications in development mode:
 1. Connect your repository to [Vercel](https://vercel.com)
 2. Select the web directory as your project root
 3. Add your environment variables
-4. Deploy!
 
 ### API (Bun) on Render
 
 1. Create a new Web Service on [Render](https://render.com)
 2. Connect your repository
-3. Configure the service:
+3. Configure the service (If not using render.yaml):
    - Build Command:  pnpm install
    - Start Command: pnpm start
    - Root Directory: apps/api
 4. Add your environment variables
 
-5. Deploy!
 
 ##  Contributing
+1. Create a new branch
+2. Make your changes
+3. Submit a pull request
 
-1. Fork the repository
-2. Create a new branch
-3. Make your changes
-4. Submit a pull request
-
-## 📝 License
-
-[MIT](LICENSE)
