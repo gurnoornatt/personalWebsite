@@ -23,13 +23,12 @@ A modern full-stack application built with Turborepo, featuring a Hono + Bun API
 
 
 ## 📦 Project Structure
-
-.
+```
 ├── apps/
 │   ├── api/         # Bun API backend
 │   └── web/         # Next.js frontend
 └── packages/        # Shared packages, main DB
-
+```
 
 ## 🛠️ Setup & Installation
 
