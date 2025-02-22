@@ -29,10 +29,18 @@
       "recommended": true,
       "a11y": {
         "noSvgWithoutTitle": "off",
-        "useFocusableInteractive": "off"
+        "useFocusableInteractive": "off",
+        "useSemanticElements": "off"
       },
       "security": {
         "noDangerouslySetInnerHtml": "off"
+      },
+      "nursery": {
+        "useSortedClasses": {
+          "level": "info",
+          "fix": "safe",
+          "options": {}
+        }
       },
       "style": {
         "noNonNullAssertion": "off",
