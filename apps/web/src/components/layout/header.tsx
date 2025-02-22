@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { Button } from "@/components/ui/button";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,7 +17,7 @@ export function Header() {
   };
 
   return (
-    <header className="relative z-50 border-b bg-background">
+    <header className="relative sticky top-0 z-50 border-b bg-background">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4">
           <div className="flex items-center">
@@ -52,12 +53,17 @@ export function Header() {
             </Link>
           </nav>
           <div className="hidden items-center space-x-4 md:flex">
-            <Link href="/login" className={buttonVariants({ variant: "ghost", size: "sm" })}>
-              Log in
-            </Link>
-            <Link href="/signup" className={buttonVariants({ size: "sm" })}>
-              Sign up
-            </Link>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+            <SignedOut>
+              <Link href="/signin" className={buttonVariants({ variant: "ghost", size: "sm" })}>
+                Log in
+              </Link>
+              <Link href="/signup" className={buttonVariants({ size: "sm" })}>
+                Sign up
+              </Link>
+            </SignedOut>
           </div>
           <Button
             variant="ghost"
@@ -80,7 +86,7 @@ export function Header() {
       {/* Mobile menu */}
       <div
         className={cn(
-          "fixed inset-x-0 top-[57px] bottom-0 bg-background md:hidden",
+          "fixed inset-x-0 top-[68px] bottom-0 bg-background md:hidden",
           "border-t",
           isMenuOpen ? "block" : "hidden",
         )}
@@ -88,16 +94,21 @@ export function Header() {
         aria-labelledby="mobile-menu-button"
       >
         <div className="flex flex-col space-y-4 p-4">
-          <div className="flex flex-col space-y-4">
-            <Link href="/signup" className={buttonVariants({ size: "sm", className: "w-full" })}>
-              Sign up
-            </Link>
-            <Link
-              href="/login"
-              className={buttonVariants({ variant: "ghost", size: "sm", className: "w-full" })}
-            >
-              Log in
-            </Link>
+          <div className="flex flex-col space-y-2">
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+            <SignedOut>
+              <Link href="/signup" className={buttonVariants({ size: "sm", className: "w-full" })}>
+                Sign up
+              </Link>
+              <Link
+                href="/login"
+                className={buttonVariants({ variant: "ghost", size: "sm", className: "w-full" })}
+              >
+                Log in
+              </Link>
+            </SignedOut>
           </div>
 
           <nav className="flex flex-col space-y-4">
