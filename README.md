@@ -1,6 +1,6 @@
 # Full Stack Monorepo
 
-A modern full-stack application built with TurboRepo, featuring a Bun API backend and Next.js frontend.
+A modern full-stack application built with Turborepo, featuring a Hono + Bun API backend and Next.js frontend.
 
 
 ### API (Backend)
