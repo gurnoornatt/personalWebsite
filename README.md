@@ -38,8 +38,9 @@ A modern full-stack application built with Turborepo, featuring a Hono + Bun API
 pnpm install
 
 2. **Bun Setup**
-Few ways to install bun:
+You can install bun in a few ways, based on your OS.
 https://bun.sh/docs/installation
+
 
 ```bash
 curl -fsSL https://bun.sh/install | bash # for macOS, Linux, and WSL
@@ -57,25 +58,30 @@ brew install oven-sh/bun/bun # for macOS and Linux
 
 Create .env files in both apps/api and apps/web:
 
-For apps/api/.env:
+For `apps/api/.env`:
 
+```
 DATABASE_URL=your_database_url
 CLERK_SECRET_KEY=your_clerk_secret_key
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
 CLERK_SIGNING_SECRET=your_clerk_webhook_secret
+```
 
-For apps/web/.env:
+For `apps/web/.env`:
+
+```
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
 CLERK_SECRET_KEY=your_clerk_secret_key
 NEXT_PUBLIC_API_URL=your_api_url
+```
 
-4. **Supabase Setup (Any postgres DB will work)**
+1. **Supabase Setup (Any postgres DB will work)**
 - Create a new project on [Supabase](https://supabase.com)
-- Copy your project URL and API keys to the .env file
+- Copy your database url to the .env file
 - Run `pnpm db:push` to initialize the database and mess around.
 - When ready, run `pnpm db:generate` to generate the schema. And then run `pnpm db:migrate` to apply the schema to the database.
 
-5. **Clerk Setup**
+1. **Clerk Setup**
 - Create a new application on [Clerk](https://clerk.com)
 - Copy your API keys to the .env file
 - Configure your OAuth providers if needed
