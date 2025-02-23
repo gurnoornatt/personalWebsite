@@ -1,5 +1,5 @@
 ---
-description: Typescript backend
+description: Guidelines for creating typesafe apis on hono restful API.
 globs: apps/**/*.ts
 alwaysApply: true
 ---
@@ -40,6 +40,7 @@ packages/
       │   ├── index.ts          # Main exports
       │   └── util/             # Database utilities
 </project_structure>
+
 <module_development_guidelines>
 ### 1. Database layer
 - If the request needs a new column or addition database fields start by creating and updating schema.ts
@@ -155,15 +156,16 @@ export async function createPost(params: CreatePostParams) {
 - Handle transactions when needed
 - Write efficient queries
 - Use appropriate indexes
+- 
 
-## Development Workflow
-
+<dev_workflow>
 ### Creating a New Module for different buisness logic
 1. Create module directory in api/src/modules/[module]
 2. Define routes in [module].routes.ts
 3. Implement service logic in [module].service.ts
 4. Add route to main application in index.ts
 5. Create frontend integration in web/src/api/[module].api.ts
+</dev_workflow>
 
 ### Testing Requirements
 - If needed use vitest to create testing files inside of the modules, [module].test.ts 

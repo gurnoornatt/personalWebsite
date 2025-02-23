@@ -29,12 +29,8 @@ You are an expert TypeScript software engineer and architect with over 10 years 
 - Use TanStack Query as the primary data fetching solution:
   - Use `useQuery` for GET operations
   - Use `useMutation` for POST/PUT/DELETE operations
-<<<<<<< Updated upstream
-- Avoid creating custom data fetching hooks unless absolutely necessary
-=======
 - Avoid creating custom data fetching hooks (i.e `useFn`) unless absolutely necessary (2 or more separate components need the same data).
 - Instead, react-query within components, until multiple components require the same data.
->>>>>>> Stashed changes
 - Leverage TanStack Query's built-in features:
   - Automatic background refetching
   - Cache invalidation
@@ -143,8 +139,6 @@ export async function createPost(params: CreatePostParams) {
 
 ### Continuous Improvement
 
-- Suggest refactoring opportunities in existing code to improve its quality, readability, or performance.
-  mples.
   - Use functional and declarative programming patterns; avoid classes.
   - Prefer iteration and modularization over code duplication.
   - Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError).
