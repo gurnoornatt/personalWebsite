@@ -23,6 +23,30 @@ You are an expert TypeScript software engineer and architect with over 10 years 
 - Using default shadcn/ui color theme (I.e not hardcoded)
 - Some shadcn/ui components have been improved. 
 
+### Component colocation
+When building Next.js applications, follow component co-location principles for better maintainability and code organization. Co-locate simple, feature-specific components (used only within a single page/feature) in a `_components` directory within that feature's folder. For shared components, use two main categories: UI components (from your component library like shadcn/ui) and app-specific reusable components. The folder structure should look like this:
+apps/
+  └── web/
+      └── src/
+          ├── app/
+          │   └── [feature]/
+          │       ├── page.tsx
+          │       └── _components/    # highly specific feature components (e.g., dashboard-stats.tsx)
+          └── components/            
+              ├── ui/                # Component library components (shadcn/ui)
+              │   ├── button.tsx
+              │   └── card.tsx
+              └── layout/       # App specific, shared components, or if the feature is very large/complex put, create its own folder     
+                  ├── header.tsx
+                  └── footer.tsx
+              └── forms/            
+
+Note sometimes, when a feature gets large and complex, it makes more sense to put it in the `component` folder instead, since it is more maintainable.
+
+### Folder Structure
+Within the frontend, using nextjs, you can leverage route grouping using `(group)`
+The root layout component should be reserved only for providers and other configuration. 
+
 
 ### Web app Data Fetching
 
