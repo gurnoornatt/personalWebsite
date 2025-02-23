@@ -66,16 +66,15 @@ export async function createPost(params: CreatePostParams) {
   const client = await getApiClient();
 
   const response = await client.posts.$post({ json: params });
+  // This returns fully typed response, no need to cast anything
   return response.json();
 }
 ```
 
 
-
-
 ### Naming Conventions
-
 - Use lowercase with dashes for directories (e.g., `components/auth-wizard`).
+- Use kebab-case (`example-card.tsx`) for *all* components.
 - Favor named exports for components.
 
 ### TypeScript Usage
@@ -146,7 +145,7 @@ export async function createPost(params: CreatePostParams) {
     Naming Conventions
   - Use lowercase with dashes for directories (e.g., components/auth-wizard).
   - Favor named exports for components.
-    TypeScript Usage
+  TypeScript Usage
   - Use TypeScript for all code; prefer interfaces over types.
   - Avoid enums; use maps instead.
   - Use functional components with TypeScript interfaces.

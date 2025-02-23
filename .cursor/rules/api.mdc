@@ -54,7 +54,31 @@ export const postSelectSchema = createSelectSchema(schema.posts);
 ```
 
 
-### 2. Route Layer ([module].routes.ts)
+### 2. Service Layer ([module].service.ts)
+- Implement business logic
+- Handle database operations using Drizzle
+- Return strongly typed responses
+- Keep services focused and modular
+- Import db from the `packages/db` 
+
+Example service implementation:
+```ts
+`[module].service.ts`
+import { db, eq, items} from "@repo/db"
+
+export const moduleService = {
+  async getItems() {
+    return db.select().from(items);
+  },
+  
+  async createItem(data: NewItem) {
+    return db.insert(items).values(data).returning();
+  }
+};
+```
+
+
+### 3. Route Layer ([module].routes.ts)
 - Define endpoints using Hono router
 - Implement request validation using zValidator. You can leverage the created zod schemas from drizzle zod.
 - Apply authentication middleware where needed
@@ -62,7 +86,7 @@ export const postSelectSchema = createSelectSchema(schema.posts);
 - Return consistent HTTP responses
 
 Example route implementation:
-
+```ts
 const moduleRoutes = new Hono()
   .use(auth(),requireAuth)
   .get("/", async (c) => {
@@ -75,24 +99,10 @@ const moduleRoutes = new Hono()
     const result = await moduleService.createItem({ ...data, userId });
     return c.json(result);
   });
+```
 
-### 3. Service Layer ([module].service.ts)
-- Implement business logic
-- Handle database operations using Drizzle
-- Return strongly typed responses
-- Keep services focused and modular
+After the route is created, you must add it to the `apps/api/src/index.ts` route so its accessable by the frontend.
 
-Example service implementation:
-
-export const moduleService = {
-  async getItems() {
-    return db.select().from(items);
-  },
-  
-  async createItem(data: NewItem) {
-    return db.insert(items).values(data).returning();
-  }
-};
 </module_development_guidelines>
 
 <frontend_integration>
@@ -182,6 +192,21 @@ Here's a complete example of a typical module:
 // packages/db/schema.ts
 .. new schema files
 
+Then:
+```ts
+// posts.service.ts
+import { db, posts, type NewPost } from "@repo/db";
+
+export const postService = {
+  async getPosts() {
+    return db.select().from(posts);
+  },
+
+  async createPost(post: NewPost) {
+    return db.insert(posts).values(post).returning();
+  }
+};
+
 // posts.routes.ts
 import { Hono } from "hono";
 import { auth, requireAuth, getUserId } from "@/pkg/middleware/clerk-auth";
@@ -201,27 +226,14 @@ export const postRoutes = new Hono()
     const post = await postService.createPost({ ...data, userId });
     return c.json(post);
   });
+```
 
-// posts.service.ts
-import { db, posts, type NewPost } from "@repo/db";
-
-export const postService = {
-  async getPosts() {
-    return db.select().from(posts);
-  },
-
-  async createPost(post: NewPost) {
-    return db.insert(posts).values(post).returning();
-  }
-};
-
-// posts.api.ts (Frontend)
 - Use the RPC-style API client for type-safe API calls
 - Leverage `InferRequestType` for parameter typing
 - Export plain async functions for API operations
 - Optionally create React Query hooks when needed
-
-// posts.api.ts
+```ts
+// posts.api.ts (Frontend)
 import { apiRpc, getApiClient, InferRequestType } from "./client";
 
 const $createPost = apiRpc.posts.$post;
@@ -237,6 +249,7 @@ export async function createPost(params: InferRequestType<typeof $createPost>["j
   const response = await client.posts.$post({ json: params });
   return response.json();
 }
+```
 </example_api_workflow>
 
 
