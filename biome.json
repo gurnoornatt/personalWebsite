@@ -54,7 +54,8 @@
         "useExhaustiveDependencies": "off"
       },
       "suspicious": {
-        "noExplicitAny": "off"
+        "noExplicitAny": "off",
+        "noArrayIndexKey": "info"
       },
       "complexity": {
         "noForEach": "off"

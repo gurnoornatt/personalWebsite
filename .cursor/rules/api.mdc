@@ -7,16 +7,17 @@ alwaysApply: true
 
 You are an expert TypeScript backend engineer specializing in building modern, type-safe APIs. Your expertise covers Hono for HTTP routing, Drizzle ORM for database operations, and React Query for frontend integration.
 
-## Core Architecture
+<core_architecture>
 
-### Technology Stack
+<tech_stack>
 - **Server & Routing**: Hono
 - **Database ORM**: Drizzle with PostgreSQL
 - **Frontend Integration**: React Query
 - **Authentication**: Clerk
 - **Validation**: Zod with zValidator
+</tech_stack>
 
-### Project Structure
+<project_structure>
 apps/
   ├── api/
   │   ├── src/
@@ -38,10 +39,8 @@ packages/
       │   ├── types.ts          # Shared TypeScript types
       │   ├── index.ts          # Main exports
       │   └── util/             # Database utilities
-
-## Module Development Guidelines
-
-
+</project_structure>
+<module_development_guidelines>
 ### 1. Database layer
 - If the request needs a new column or addition database fields start by creating and updating schema.ts
 - Leverage types.ts inside packages/db to create new zod schemas for the newly created tables or columns and eg:
@@ -93,35 +92,35 @@ export const moduleService = {
     return db.insert(items).values(data).returning();
   }
 };
+</module_development_guidelines>
 
+<frontend_integration>
+When fetching data from the backend api on the client, use the following guidelines
+`post.api.ts`
+```ts
+import { apiRpc, getApiClient, InferRequestType } from "./client";
 
+const $createPost = apiRpc.posts.$post;
+// Simple get
+export async function getPosts() {
+  const client = await getApiClient();
 
-### 4. Frontend Integration ([module].api.ts)
-- Define type-safe React Query hooks
-- Implement proper error handling
-- Use consistent query key patterns
-- Handle loading and error states
-
-Example React Query integration:
-
-export function useItems() {
-  return useQuery({
-    queryKey: ['items'],
-    queryFn: () => fetch('/api/items').then(res => res.json())
-  });
+  const response = await client.posts.$get();
+  return response.json();
 }
+// Safely leverage the typed params elsewhere within the nextjs application 
+export type CreatePostParams = InferRequestType<typeof $createPost>["json"];
+export async function createPost(params: CreatePostParams) {
+  const client = await getApiClient();
 
-export function useCreateItem() {
-  return useMutation({
-    mutationFn: (data: NewItem) => 
-      fetch('/api/items', {
-        method: 'POST',
-        body: JSON.stringify(data)
-      }).then(res => res.json())
-  });
+  const response = await client.posts.$post({ json: params });
+  return response.json();
 }
+```
+</frontend_integration>
 
-## Best Practices
+
+<best_practices>
 
 ### Type Safety
 - Use Drizzle schemas for database types
@@ -168,11 +167,18 @@ export function useCreateItem() {
 
 ### Testing Requirements
 - If needed use vitest to create testing files inside of the modules, [module].test.ts 
+- 
+### Code Quality
+- For methods with more than one argument, use object destructuring: `function myMethod({ param1, param2 }: MyMethodParams) {...}`.
+</best_practices>
 
 
-## Example Module Implementation
-
+<example_api_workflow>
 Here's a complete example of a typical module:
+
+(if required) create new schemas. 
+// packages/db/schema.ts
+.. new schema files
 
 // posts.routes.ts
 import { Hono } from "hono";
@@ -229,6 +235,6 @@ export async function createPost(params: InferRequestType<typeof $createPost>["j
   const response = await client.posts.$post({ json: params });
   return response.json();
 }
-
+</example_api_workflow>
 
 

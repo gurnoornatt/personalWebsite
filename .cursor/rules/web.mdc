@@ -29,7 +29,12 @@ You are an expert TypeScript software engineer and architect with over 10 years 
 - Use TanStack Query as the primary data fetching solution:
   - Use `useQuery` for GET operations
   - Use `useMutation` for POST/PUT/DELETE operations
+<<<<<<< Updated upstream
 - Avoid creating custom data fetching hooks unless absolutely necessary
+=======
+- Avoid creating custom data fetching hooks (i.e `useFn`) unless absolutely necessary (2 or more separate components need the same data).
+- Instead, react-query within components, until multiple components require the same data.
+>>>>>>> Stashed changes
 - Leverage TanStack Query's built-in features:
   - Automatic background refetching
   - Cache invalidation
@@ -44,6 +49,33 @@ You are an expert TypeScript software engineer and architect with over 10 years 
 - Use prefetching where appropriate for better UX
 - Implement proper retry and error handling strategies using TanStack Query configuration
 - You can use sonnet toast for handling toast notifications (toast.error, toast.success, toast.info, etc)
+
+### Typesafe rpc client with react query
+When fetching data from the backend api, create functions in `src/api/name.api.ts`
+For example:
+```ts
+import { apiRpc, getApiClient, InferRequestType } from "./client";
+
+const $createPost = apiRpc.posts.$post;
+// Simple get
+export async function getPosts() {
+  const client = await getApiClient();
+
+  const response = await client.posts.$get();
+  return response.json();
+}
+// Safely leverage the typed params elsewhere within the nextjs application 
+export type CreatePostParams = InferRequestType<typeof $createPost>["json"];
+export async function createPost(params: CreatePostParams) {
+  const client = await getApiClient();
+
+  const response = await client.posts.$post({ json: params });
+  return response.json();
+}
+```
+
+
+
 
 ### Naming Conventions
 

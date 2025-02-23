@@ -9,7 +9,8 @@ export async function getPosts() {
   return response.json();
 }
 
-export async function createPost(params: InferRequestType<typeof $createPost>["json"]) {
+export type CreatePostParams = InferRequestType<typeof $createPost>["json"];
+export async function createPost(params: CreatePostParams) {
   const client = await getApiClient();
 
   const response = await client.posts.$post({ json: params });
