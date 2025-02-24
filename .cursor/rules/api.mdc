@@ -129,19 +129,30 @@ export async function createPost(params: CreatePostParams) {
 }
 ```
 </frontend_integration>
+<package_management>
 
+- Use `pnpm` as the primary package manager for the project
+- Install dependencies using `pnpm add [package-name]`
+- Install dev dependencies using `pnpm add -D [package-name]`
+- Install workspace dependencies using `pnpm add -w [package-name]`
+</package_management>
 
-<best_practices>
+<development_guidelines>
+### Running Scripts
+- Use `bun` as the runtime environment and script runner
+- Execute scripts defined in package.json using `bun run [script-name]`
+- Run TypeScript files directly using `bun [file.ts]`
+
+### Monorepo 
+The project use turbo repo. To run everything, use the `turbo dev` script from the root folder.
 
 ### Type Safety
 - Use Drizzle schemas for database types
-- Use the 
 - Share types between frontend and backend using a shared package
 - Leverage zod for runtime validation
 
 ### Error Handling
 - Implement consistent error handlers
-- There is a catch all error handler alreaady implemented in error middleware
 - Use proper HTTP status codes
 - Return structured error responses
 - Handle edge cases appropriately
@@ -166,7 +177,7 @@ export async function createPost(params: CreatePostParams) {
 - Handle transactions when needed
 - Write efficient queries
 - Use appropriate indexes
-- 
+</development_guidelines>
 
 <dev_workflow>
 ### Creating a New Module for different buisness logic
