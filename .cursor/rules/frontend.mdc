@@ -178,3 +178,11 @@ export async function createPost(params: CreatePostParams) {
   - Avoid unnecessary curly braces in conditionals; use concise syntax for simple statements.
   - Never use ReactFC or arrow functions to define components
   - Use declarative JSX.
+
+<package_management>
+
+- Use `pnpm` as the primary package manager for the project
+- Install dependencies using `pnpm add [package-name]`
+- Install dev dependencies using `pnpm add -D [package-name]`
+- Install workspace dependencies using `pnpm add -w [package-name]`
+</package_management>
