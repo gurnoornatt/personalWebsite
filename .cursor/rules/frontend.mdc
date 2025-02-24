@@ -70,6 +70,11 @@ The root layout component should be reserved only for providers and other config
 - Implement proper retry and error handling strategies using TanStack Query configuration
 - You can use sonnet toast for handling toast notifications (toast.error, toast.success, toast.info, etc)
 
+### Client vs Server Components
+Components that require React hooks or are interactive (like buttons, switches, forms) need a "use client" directive at the top of the file to render client-side.
+
+Otherwise, Next.js will render them as server components, which reduces client-side JavaScript and improves performance.
+
 ### Typesafe rpc client with react query
 When fetching data from the backend api, create functions in `src/api/name.api.ts`
 For example:
