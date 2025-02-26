@@ -1,0 +1,28 @@
+
+
+> web@0.1.0 build /Users/gunny/CsProjects/personalProjects/gnattSite/apps/web
+> next build
+
+   [1m[38;2;173;127;168m▲ Next.js 15.1.7[39m[22m
+   - Environments: .env.local, .env.production, .env
+
+ [37m[1m [22m[39m Creating an optimized production build ...
+ [32m[1m✓[22m[39m Compiled successfully
+ [37m[1m [22m[39m Skipping validation of types
+[?25l [37m[1m [22m[39m Linting  [36m.[39m[2K[1G[?25h [37m[1m [22m[39m Linting     [32m[1m✓[22m[39m Linting 
+[?25l [37m[1m [22m[39m Collecting page data  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting page data  [36m..[39m[2K[1G[?25h [37m[1m [22m[39m Collecting page data     [32m[1m✓[22m[39m Collecting page data 
+[?25l [37m[1m [22m[39m Generating static pages (0/17)  [36m[    ][39m[2K[1G [37m[1m [22m[39m Generating static pages (0/17)  [36m[=   ][39m[2K[1G [37m[1m [22m[39m Generating static pages (0/17)  [36m[==  ][39m[2K[1G[?25hError occurred prerendering page "/posts". Read more: https://nextjs.org/docs/messages/prerender-error
+Error: @clerk/clerk-js: The publishableKey passed to Clerk is invalid. You can get your Publishable key at https://dashboard.clerk.com/last-active?path=api-keys. (key=pk_test_dummy-key-for-build)
+    at Object.throwInvalidPublishableKeyError (/Users/gunny/CsProjects/personalProjects/gnattSite/apps/web/.next/server/app/posts/page.js:14:1705)
+    at new tp (/Users/gunny/CsProjects/personalProjects/gnattSite/apps/web/.next/server/app/posts/page.js:2:785538)
+    at 76599 (/Users/gunny/CsProjects/personalProjects/gnattSite/apps/web/.next/server/app/posts/page.js:21:10326)
+    at Object.t [as require] (/Users/gunny/CsProjects/personalProjects/gnattSite/apps/web/.next/server/webpack-runtime.js:1:128)
+    at require (/Users/gunny/CsProjects/personalProjects/gnattSite/node_modules/.pnpm/next@15.1.7_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:131:7946)
+    at u (/Users/gunny/CsProjects/personalProjects/gnattSite/node_modules/.pnpm/next@15.1.7_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:36:646)
+    at F (/Users/gunny/CsProjects/personalProjects/gnattSite/node_modules/.pnpm/next@15.1.7_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:36:10477)
+    at W (/Users/gunny/CsProjects/personalProjects/gnattSite/node_modules/.pnpm/next@15.1.7_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:36:13033)
+    at /Users/gunny/CsProjects/personalProjects/gnattSite/node_modules/.pnpm/next@15.1.7_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:36:15283
+    at Z._fromJSON (/Users/gunny/CsProjects/personalProjects/gnattSite/node_modules/.pnpm/next@15.1.7_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:36:15317)
+Export encountered an error on /posts/page: /posts, exiting the build.
+ [31m[1m⨯[22m[39m Next.js build worker exited with code: 1 and signal: null
+[?25h[41m[30m ELIFECYCLE [39m[49m [31mCommand failed with exit code 1.[39m

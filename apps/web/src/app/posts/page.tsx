@@ -5,8 +5,16 @@ import { getPosts } from "@/api/posts.api";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
+// Add Post interface
+interface Post {
+  id: string;
+  title: string;
+  content: string;
+  createdAt: string;
+}
+
 export default function TestPostsPage() {
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError } = useQuery<Post[]>({
     queryKey: ["posts"],
     queryFn: getPosts,
   });
@@ -42,7 +50,7 @@ export default function TestPostsPage() {
 
   return (
     <div className="container mx-auto p-4 space-y-4">
-      {data?.map((post) => (
+      {data?.map((post: Post) => (
         <Card key={post.id}>
           <CardHeader>
             <CardTitle>{post.title}</CardTitle>
