@@ -1,6 +1,6 @@
 {
   "framework": "nextjs",
-  "buildCommand": "pnpm run build",
-  "installCommand": "cd ../.. && pnpm install",
+  "buildCommand": "cp vercel-package.json package.json && npm install && npm run build",
+  "installCommand": "npm install -g pnpm",
   "outputDirectory": ".next"
 } 
