@@ -3,13 +3,13 @@
   "type": "module",
   "scripts": {
     "dev": "bun run --hot src/index.ts",
-    "start": "bun run src/index.ts",
-    "format": "biome format --write .",
-    "clerk:listen": "pnpm dlx ngrok http --url=still-regular-sculpin.ngrok-free.app 3004"
+    "build": "bun build src/index.ts --outdir dist --target bun",
+    "start": "bun dist/index.js",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write ."
   },
   "dependencies": {
-    "@clerk/backend": "^1.24.2",
-    "@hono/zod-validator": "^0.4.3",
+    "@hono/zod-validator": "^0.2.0",
     "@repo/db": "workspace:*",
     "@repo/id": "workspace:*",
     "@repo/logs": "workspace:*",

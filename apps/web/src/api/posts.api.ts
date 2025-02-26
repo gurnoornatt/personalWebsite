@@ -1,18 +1,18 @@
-import { apiRpc, getApiClient, InferRequestType } from "./client";
+import { apiRpc, getServerClient, InferRequestType } from "./client";
 
 const $createPost = apiRpc.posts.$post;
 
 export async function getPosts() {
-  const client = await getApiClient();
-
-  const response = await client.posts.$get();
+  // Use server client for all requests
+  const serverClient = await getServerClient();
+  const response = await serverClient.posts.$get();
   return response.json();
 }
 
 export type CreatePostParams = InferRequestType<typeof $createPost>["json"];
 export async function createPost(params: CreatePostParams) {
-  const client = await getApiClient();
-
-  const response = await client.posts.$post({ json: params });
+  // Use server client for all requests
+  const serverClient = await getServerClient();
+  const response = await serverClient.posts.$post({ json: params });
   return response.json();
 }

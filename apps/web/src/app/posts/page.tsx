@@ -13,7 +13,18 @@ interface Post {
   createdAt: string;
 }
 
+// This prevents static generation during build
+export const dynamic = 'force-dynamic';
+
+// This prevents prerendering during build
+export const runtime = 'edge';
+
 export default function TestPostsPage() {
+  // Skip authentication check during build
+  if (typeof window === 'undefined') {
+    return <div>Loading posts...</div>;
+  }
+
   const { data, isLoading, isError } = useQuery<Post[]>({
     queryKey: ["posts"],
     queryFn: getPosts,

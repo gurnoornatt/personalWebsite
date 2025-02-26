@@ -10,19 +10,35 @@
  [32m[1m✓[22m[39m Compiled successfully
  [37m[1m [22m[39m Skipping validation of types
 [?25l [37m[1m [22m[39m Linting  [36m.[39m[2K[1G[?25h [37m[1m [22m[39m Linting     [32m[1m✓[22m[39m Linting 
-[?25l [37m[1m [22m[39m Collecting page data  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting page data  [36m..[39m[2K[1G[?25h [37m[1m [22m[39m Collecting page data     [32m[1m✓[22m[39m Collecting page data 
-[?25l [37m[1m [22m[39m Generating static pages (0/17)  [36m[    ][39m[2K[1G [37m[1m [22m[39m Generating static pages (0/17)  [36m[=   ][39m[2K[1G [37m[1m [22m[39m Generating static pages (0/17)  [36m[==  ][39m[2K[1G[?25hError occurred prerendering page "/posts". Read more: https://nextjs.org/docs/messages/prerender-error
-Error: @clerk/clerk-js: The publishableKey passed to Clerk is invalid. You can get your Publishable key at https://dashboard.clerk.com/last-active?path=api-keys. (key=pk_test_dummy-key-for-build)
-    at Object.throwInvalidPublishableKeyError (/Users/gunny/CsProjects/personalProjects/gnattSite/apps/web/.next/server/app/posts/page.js:14:1705)
-    at new tp (/Users/gunny/CsProjects/personalProjects/gnattSite/apps/web/.next/server/app/posts/page.js:2:785538)
-    at 76599 (/Users/gunny/CsProjects/personalProjects/gnattSite/apps/web/.next/server/app/posts/page.js:21:10326)
-    at Object.t [as require] (/Users/gunny/CsProjects/personalProjects/gnattSite/apps/web/.next/server/webpack-runtime.js:1:128)
-    at require (/Users/gunny/CsProjects/personalProjects/gnattSite/node_modules/.pnpm/next@15.1.7_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:131:7946)
-    at u (/Users/gunny/CsProjects/personalProjects/gnattSite/node_modules/.pnpm/next@15.1.7_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:36:646)
-    at F (/Users/gunny/CsProjects/personalProjects/gnattSite/node_modules/.pnpm/next@15.1.7_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:36:10477)
-    at W (/Users/gunny/CsProjects/personalProjects/gnattSite/node_modules/.pnpm/next@15.1.7_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:36:13033)
-    at /Users/gunny/CsProjects/personalProjects/gnattSite/node_modules/.pnpm/next@15.1.7_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:36:15283
-    at Z._fromJSON (/Users/gunny/CsProjects/personalProjects/gnattSite/node_modules/.pnpm/next@15.1.7_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:36:15317)
-Export encountered an error on /posts/page: /posts, exiting the build.
- [31m[1m⨯[22m[39m Next.js build worker exited with code: 1 and signal: null
-[?25h[41m[30m ELIFECYCLE [39m[49m [31mCommand failed with exit code 1.[39m
+[?25l [37m[1m [22m[39m Collecting page data  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting page data  [36m..[39m[2K[1G[?25h [33m[1m⚠[22m[39m Using edge runtime on a page currently disables static generation for that page
+[?25l [36m.[39m [2K[1G[?25h    [32m[1m✓[22m[39m Collecting page data 
+[?25l [37m[1m [22m[39m Generating static pages (0/14)  [36m[    ][39m[2K[1G [37m[1m [22m[39m Generating static pages (0/14)  [36m[=   ][39m[2K[1G [37m[1m [22m[39m Generating static pages (0/14)  [36m[==  ][39m[2K[1G[?25h [32m[1m✓[22m[39m Generating static pages (14/14)
+[?25l [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[?25l [37m[1m [22m[39m Collecting build traces  [36m.[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m..[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m...[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m...[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m.[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m..[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m...[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m...[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m.[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m..[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m...[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m...[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m.[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m..[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m...[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m...[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m.[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m..[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m...[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m...[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m.[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m..[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m...[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m...[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m.[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m..[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m...[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m...[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m.[39m[2K[1G[?25h [37m[1m [22m[39m Collecting build traces     [32m[1m✓[22m[39m Collecting build traces 
+[2K[1G[?25h [37m[1m [22m[39m Finalizing page optimization     [32m[1m✓[22m[39m Finalizing page optimization 
+
+[4mRoute (app)[24m                              [4mSize[24m     [4mFirst Load JS[24m
+┌ ○ /                                    1.15 kB         [37m[1m110 kB[22m[39m
+├ ○ /_not-found                          979 B           [37m[1m106 kB[22m[39m
+├ ○ /admin                               3.99 kB         [37m[1m130 kB[22m[39m
+├ ○ /admin/books                         17.4 kB         [37m[1m156 kB[22m[39m
+├ ○ /admin/login                         2.23 kB         [37m[1m128 kB[22m[39m
+├ ○ /admin/profile                       3.16 kB         [37m[1m129 kB[22m[39m
+├ ○ /admin/social                        3.9 kB          [37m[1m130 kB[22m[39m
+├ ○ /admin/thoughts                      5.61 kB         [37m[1m132 kB[22m[39m
+├ ○ /books                               6.82 kB         [37m[1m116 kB[22m[39m
+├ ƒ /posts                               6.03 kB         [37m[1m123 kB[22m[39m
+├ ○ /posts/create                        140 B           [37m[1m105 kB[22m[39m
+├ ○ /thoughts                            996 B           [37m[1m110 kB[22m[39m
+└ ƒ /thoughts/[slug]                     2.71 kB         [37m[1m112 kB[22m[39m
++ First Load JS shared by all            [37m[1m105 kB[22m[39m
+  ├ chunks/147-6c16e8568ada5268.js       50.4 kB
+  ├ chunks/b2bc8835-16c1a8f1edaf3d59.js  53 kB
+  └ other shared chunks (total)          1.93 kB
+
+
+ƒ Middleware                             [37m[1m32.1 kB[22m[39m
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+[?25h
