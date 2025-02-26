@@ -4,8 +4,8 @@
 # Navigate to the web app directory
 cd apps/web || exit 1
 
-# Deploy using Wrangler with the explicit path to the entry point
-npx wrangler deploy deploy.js
+# Deploy using Wrangler with the explicit path to the worker script
+npx wrangler deploy worker.js
 
 # Exit with the status of the wrangler command
 exit $? 

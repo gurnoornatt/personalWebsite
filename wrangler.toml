@@ -1,6 +1,6 @@
 # Root wrangler.toml that redirects to the app's entry point
-name = "gnatt-site"
-main = "apps/web/deploy.js"
+name = "site"
+main = "apps/web/worker.js"
 
 compatibility_date = "2023-12-01"
 compatibility_flags = ["nodejs_compat"]
@@ -11,4 +11,8 @@ command = "cd apps/web && pnpm install && pnpm run build"
 output_directory = "apps/web/.next"
 
 [build.environment]
-NODE_VERSION = "18" 
+NODE_VERSION = "18"
+
+# Define how assets are served
+[site]
+bucket = "apps/web/.next" 

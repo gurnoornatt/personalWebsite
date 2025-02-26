@@ -18,14 +18,14 @@ This document provides instructions for deploying this Next.js application to Cl
 
 Use the following build configuration settings:
 
-- **Framework preset**: Next.js
+- **Framework preset**: Custom
 - **Build command**: `cd apps/web && pnpm install && pnpm run build`
 - **Build output directory**: `apps/web/.next`
 - **Root directory**: `/` (repository root)
 - **Node.js version**: 18 (or higher)
 - **Deploy command**: `chmod +x deploy.sh && ./deploy.sh`
 
-> **IMPORTANT**: The deploy command must explicitly specify the path to the entry point file. Using just `npx wrangler deploy` without arguments will result in a "Missing entry-point" error.
+> **IMPORTANT**: Cloudflare Workers does not support Node.js built-in modules. Our deployment uses a simple Worker script compatible with Cloudflare's environment.
 
 ## Environment Variables
 
@@ -38,13 +38,24 @@ Add the following environment variables in the Cloudflare Pages dashboard:
 
 ### Functions
 
-If you're using API routes or server components, enable the Functions feature in your Cloudflare Pages project settings.
+Enable the Functions feature in your Cloudflare Pages project settings.
 
 ### Compatibility Flags
 
-Add the following compatibility flags:
+Add the following compatibility flags in the Cloudflare dashboard:
 
 - `nodejs_compat`
+
+## The Deployment Approach
+
+This project uses a simplified approach for deploying Next.js to Cloudflare Pages:
+
+1. The Next.js application is built normally with `next build`
+2. A simple Cloudflare Worker script (`worker.js`) handles routing
+3. Static assets are served directly by Cloudflare Pages
+4. API routes are handled by Cloudflare Functions
+
+This approach avoids issues with Node.js dependencies that aren't supported in the Cloudflare Workers environment.
 
 ## Manual Deployment
 
@@ -60,7 +71,7 @@ pnpm run build
 # Deploy to Cloudflare
 pnpm run deploy
 # OR directly with Wrangler
-npx wrangler deploy deploy.js
+npx wrangler deploy worker.js
 ```
 
 ## Post-Deployment
@@ -75,23 +86,21 @@ After deployment, check the following:
 
 If you encounter issues with the deployment:
 
-1. **"Missing entry-point" error**:
-   - Make sure your deploy command is `chmod +x deploy.sh && ./deploy.sh` or explicitly includes the path to the entry point
-   - Do NOT use just `npx wrangler deploy` without arguments
-   - Check that the `deploy.sh` script is executable and properly accessing the entry point file
+1. **"No such module" errors**:
+   - This indicates your script is using Node.js modules that aren't supported in Cloudflare Workers
+   - Remove any imports that use the `node:` prefix (e.g., `node:http`, `node:fs`, etc.)
+   - Use only Web API features available in the Cloudflare Workers runtime
 
-2. **File not found errors**:
-   - Verify that `apps/web/deploy.js` exists and is properly formatted
-   - Check that the build completed successfully before deployment
+2. **Worker name mismatch**:
+   - If you see a warning about Worker name mismatch, update the `name` field in `wrangler.toml` to match what Cloudflare expects (usually "site")
 
 3. **Other issues**:
    - Check the build logs for errors
    - Verify that the build output directory is correct
-   - Ensure all dependencies are installed correctly
-   - Check that environment variables are set properly
+   - Ensure static assets are being generated correctly
 
 ## Additional Resources
 
 - [Cloudflare Pages documentation](https://developers.cloudflare.com/pages/)
-- [Next.js on Cloudflare Pages](https://developers.cloudflare.com/pages/framework-guides/deploy-a-nextjs-site/)
-- [Wrangler CLI documentation](https://developers.cloudflare.com/workers/wrangler/) 
+- [Cloudflare Workers documentation](https://developers.cloudflare.com/workers/)
+- [Cloudflare Workers runtime API](https://developers.cloudflare.com/workers/runtime-apis/) 

@@ -2,8 +2,21 @@
   "version": 1,
   "include": ["/*"],
   "exclude": [
-    "/_next/*",
-    "/api/*",
-    "/static/*"
+    "/_next/static/*",
+    "/static/*",
+    "/*.ico",
+    "/*.json",
+    "/*.png",
+    "/*.svg"
+  ],
+  "routes": [
+    {
+      "src": "/api/.*",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
   ]
 } 
