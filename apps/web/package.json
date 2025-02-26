@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "next lint --max-warnings 0",
     "check-types": "tsc --noEmit",
-    "format": "biome format --write ."
+    "format": "biome format --write .",
+    "deploy": "npx wrangler deploy deploy.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.0",

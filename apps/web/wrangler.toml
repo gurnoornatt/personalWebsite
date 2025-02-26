@@ -9,6 +9,15 @@ NODE_VERSION = "18"
 [site]
 bucket = ".next"
 
+# Add main entry point for Wrangler
+main = ".next/standalone/server.js"
+
+# Configure Pages Functions
+[functions]
+directory = ".next/server/pages"
+include = ["apps/web/.next/server/pages/**/*.js"]
+exclude = ["node_modules/**/*", ".git/**/*"]
+
 [env.production]
 name = "gnatt-site-production"
 

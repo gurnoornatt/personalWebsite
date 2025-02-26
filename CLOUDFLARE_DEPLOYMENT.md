@@ -23,6 +23,7 @@ Use the following build configuration settings:
 - **Build output directory**: `apps/web/.next`
 - **Root directory**: `/` (repository root)
 - **Node.js version**: 18 (or higher)
+- **Deploy command**: `cd apps/web && npx wrangler deploy deploy.js`
 
 ## Environment Variables
 
@@ -43,6 +44,21 @@ Add the following compatibility flags:
 
 - `nodejs_compat`
 
+## Manual Deployment
+
+If you prefer to deploy manually, you can use the following commands:
+
+```bash
+# Navigate to the web app directory
+cd apps/web
+
+# Build the application
+pnpm run build
+
+# Deploy to Cloudflare
+pnpm run deploy
+```
+
 ## Post-Deployment
 
 After deployment, check the following:
@@ -59,8 +75,10 @@ If you encounter issues with the deployment:
 2. Verify that the build output directory is correct
 3. Ensure all dependencies are installed correctly
 4. Check that environment variables are set properly
+5. If you see "Missing entry-point" errors, make sure the deploy command includes the path to `deploy.js`
 
 ## Additional Resources
 
 - [Cloudflare Pages documentation](https://developers.cloudflare.com/pages/)
-- [Next.js on Cloudflare Pages](https://developers.cloudflare.com/pages/framework-guides/deploy-a-nextjs-site/) 
+- [Next.js on Cloudflare Pages](https://developers.cloudflare.com/pages/framework-guides/deploy-a-nextjs-site/)
+- [Wrangler CLI documentation](https://developers.cloudflare.com/workers/wrangler/) 

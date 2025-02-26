@@ -8,9 +8,14 @@ output_directory = ".next"
 [build.environment]
 NODE_VERSION = "18"
 
+# Specify the main entry point for Wrangler
+main = "apps/web/deploy.js"
+
 # Enable Next.js Edge middleware
 [functions]
-included_files = ["apps/web/.next/server/**", "apps/web/.next/standalone/**"]
+directory = "apps/web/.next/server/pages"
+include = ["apps/web/.next/server/pages/**/*.js", "apps/web/.next/standalone/**/*.js"]
+exclude = ["node_modules/**/*", ".git/**/*"]
 
 # Define routes
 [[routes]]
@@ -29,5 +34,5 @@ cache = { browser_ttl = 31536000, edge_ttl = 31536000 }
 
 [[routes]]
 pattern = "/*"
-script = "apps/web/.next/server/pages/[path].js"
+script = "apps/web/deploy.js"
 fallback_script = "apps/web/.next/server/pages/404.js" 
