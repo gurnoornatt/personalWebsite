@@ -23,7 +23,9 @@ Use the following build configuration settings:
 - **Build output directory**: `apps/web/.next`
 - **Root directory**: `/` (repository root)
 - **Node.js version**: 18 (or higher)
-- **Deploy command**: `cd apps/web && npx wrangler deploy deploy.js`
+- **Deploy command**: `chmod +x deploy.sh && ./deploy.sh`
+
+> **IMPORTANT**: The deploy command must explicitly specify the path to the entry point file. Using just `npx wrangler deploy` without arguments will result in a "Missing entry-point" error.
 
 ## Environment Variables
 
@@ -57,6 +59,8 @@ pnpm run build
 
 # Deploy to Cloudflare
 pnpm run deploy
+# OR directly with Wrangler
+npx wrangler deploy deploy.js
 ```
 
 ## Post-Deployment
@@ -71,11 +75,20 @@ After deployment, check the following:
 
 If you encounter issues with the deployment:
 
-1. Check the build logs for errors
-2. Verify that the build output directory is correct
-3. Ensure all dependencies are installed correctly
-4. Check that environment variables are set properly
-5. If you see "Missing entry-point" errors, make sure the deploy command includes the path to `deploy.js`
+1. **"Missing entry-point" error**:
+   - Make sure your deploy command is `chmod +x deploy.sh && ./deploy.sh` or explicitly includes the path to the entry point
+   - Do NOT use just `npx wrangler deploy` without arguments
+   - Check that the `deploy.sh` script is executable and properly accessing the entry point file
+
+2. **File not found errors**:
+   - Verify that `apps/web/deploy.js` exists and is properly formatted
+   - Check that the build completed successfully before deployment
+
+3. **Other issues**:
+   - Check the build logs for errors
+   - Verify that the build output directory is correct
+   - Ensure all dependencies are installed correctly
+   - Check that environment variables are set properly
 
 ## Additional Resources
 
