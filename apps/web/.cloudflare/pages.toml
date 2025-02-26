@@ -1,0 +1,33 @@
+# Cloudflare Pages configuration
+# https://developers.cloudflare.com/pages/platform/functions/
+
+[build]
+command = "cd ../../ && pnpm install && cd apps/web && pnpm run build"
+output_directory = ".next"
+
+[build.environment]
+NODE_VERSION = "18"
+
+# Enable Next.js Edge middleware
+[functions]
+included_files = ["apps/web/.next/server/**", "apps/web/.next/standalone/**"]
+
+# Define routes
+[[routes]]
+pattern = "/api/*"
+script = "apps/web/.next/server/pages/api/[path].js"
+
+[[routes]]
+pattern = "/_next/static/*"
+content_type = "text/javascript"
+cache = { browser_ttl = 31536000, edge_ttl = 31536000 }
+
+[[routes]]
+pattern = "/_next/image*"
+content_type = "image/*"
+cache = { browser_ttl = 31536000, edge_ttl = 31536000 }
+
+[[routes]]
+pattern = "/*"
+script = "apps/web/.next/server/pages/[path].js"
+fallback_script = "apps/web/.next/server/pages/404.js" 
