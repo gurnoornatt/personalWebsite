@@ -5,20 +5,19 @@ import { VercelAnalytics } from "@/lib/analytics/vercel";
 import { geistMono, geistSans } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import { Providers } from "@/providers/providers";
-import { ClerkProvider } from "@clerk/nextjs";
 
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Webapp Starter Template",
-  description: "A monorepo template for building webapps - optimized for ai.",
+  title: "Gurnoor Natt",
+  description: "Personal website of Gurnoor Natt - Building AI-powered speech therapy for neurodivergent children",
 };
 interface RootLayoutProps {
   children: React.ReactNode;
 }
 
 export const viewport: Viewport = {
-  colorScheme: "dark light",
+  colorScheme: "dark",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
     { media: "(prefers-color-scheme: dark)", color: "black" },
@@ -27,25 +26,22 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <ClerkProvider>
-      <html suppressHydrationWarning lang="en">
-        <head>{/* <GoogleAnalytics gaId="G-2L23D2FV55" /> */}</head>
-
-        <body
-          className={cn(
-            "min-h-screen bg-background font-sans antialiased",
-            geistMono.variable,
-            geistSans.variable,
-          )}
-        >
-          <Providers attribute="class" defaultTheme="system" enableSystem>
-            {children}
-            <TailwindIndicator />
-            <Toaster />
-          </Providers>
-          <VercelAnalytics />
-        </body>
-      </html>
-    </ClerkProvider>
+    <html suppressHydrationWarning lang="en">
+      <head />
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          geistMono.variable,
+          geistSans.variable,
+        )}
+      >
+        <Providers attribute="class" defaultTheme="dark" enableSystem={false}>
+          {children}
+          <TailwindIndicator />
+          <Toaster />
+        </Providers>
+        <VercelAnalytics />
+      </body>
+    </html>
   );
 }

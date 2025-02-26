@@ -134,3 +134,95 @@ This will start both the API and web applications in development mode:
 2. Make your changes
 3. Submit a pull request
 
+# Personal Website
+
+A modern personal website built with Next.js, featuring an admin dashboard for managing content.
+
+## Features
+
+- **Homepage**: Showcase your profile, thoughts, books, and social links
+- **Admin Dashboard**: Manage your content through a secure admin interface
+- **Responsive Design**: Looks great on all devices
+- **Local Storage**: Content management without a backend database
+
+## Project Structure
+```
+├── apps/
+│   └── web/         # Next.js frontend
+└── packages/        # Shared packages
+```
+
+## Setup & Installation
+
+1. **Install dependencies**
+
+```bash
+pnpm install
+```
+
+2. **Environment Setup**
+
+Create a `.env` file in `apps/web`:
+
+```
+# Authentication (for admin section)
+ADMIN_USERNAME=your_admin_username
+ADMIN_PASSWORD=your_admin_password
+
+# Optional: Analytics
+# NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=your_ga_id
+```
+
+## Development
+
+Run the development server:
+
+```bash
+pnpm dev
+```
+
+This will start the web application in development mode:
+- Web: http://localhost:3000
+- Admin: http://localhost:3000/admin (login required)
+
+## Deployment to Vercel
+
+### Option 1: One-Click Deploy
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fyourusername%2Fyourrepo)
+
+### Option 2: Manual Deployment
+
+1. Push your code to GitHub
+2. Connect your repository to [Vercel](https://vercel.com)
+3. Vercel will automatically detect the Next.js application
+4. Add your environment variables:
+   - `ADMIN_USERNAME`: Your admin username
+   - `ADMIN_PASSWORD`: Your admin password
+   - Optional: `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID` for analytics
+
+### Important Deployment Notes
+
+- The application uses localStorage for content management, which means your content is stored in the browser
+- To persist content across devices, you'll need to manually export/import your data or implement a backend database
+- The admin section is protected by a simple username/password authentication
+
+## Admin Dashboard
+
+Access the admin dashboard at `/admin` and use your credentials to log in. From there, you can:
+
+1. Edit your profile information
+2. Manage your thoughts/blog posts
+3. Curate your book recommendations
+4. Update your social media links
+
+## Customization
+
+- Edit the theme in `apps/web/src/app/globals.css`
+- Modify components in `apps/web/src/components`
+- Update page layouts in `apps/web/src/app`
+
+## License
+
+MIT
+

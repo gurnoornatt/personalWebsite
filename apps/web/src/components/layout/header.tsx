@@ -7,7 +7,6 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { Button } from "@/components/ui/button";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,36 +33,22 @@ export function Header() {
           </div>
           <nav className="hidden space-x-4 md:flex">
             <Link
-              href="/about"
+              href="/thoughts"
               className="font-medium text-muted-foreground text-sm hover:text-primary"
             >
-              About
+              Thoughts
             </Link>
             <Link
-              href="/services"
+              href="/books"
               className="font-medium text-muted-foreground text-sm hover:text-primary"
             >
-              Services
-            </Link>
-            <Link
-              href="/contact"
-              className="font-medium text-muted-foreground text-sm hover:text-primary"
-            >
-              Contact
+              Books
             </Link>
           </nav>
           <div className="hidden items-center space-x-4 md:flex">
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-            <SignedOut>
-              <Link href="/signin" className={buttonVariants({ variant: "ghost", size: "sm" })}>
-                Log in
-              </Link>
-              <Link href="/signup" className={buttonVariants({ size: "sm" })}>
-                Sign up
-              </Link>
-            </SignedOut>
+            <Link href="/admin/login" className={buttonVariants({ variant: "ghost", size: "sm" })}>
+              Admin
+            </Link>
           </div>
           <Button
             variant="ghost"
@@ -95,40 +80,23 @@ export function Header() {
       >
         <div className="flex flex-col space-y-4 p-4">
           <div className="flex flex-col space-y-2">
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-            <SignedOut>
-              <Link href="/signup" className={buttonVariants({ size: "sm", className: "w-full" })}>
-                Sign up
-              </Link>
-              <Link
-                href="/login"
-                className={buttonVariants({ variant: "ghost", size: "sm", className: "w-full" })}
-              >
-                Log in
-              </Link>
-            </SignedOut>
+            <Link href="/admin/login" className={buttonVariants({ size: "sm", className: "w-full" })}>
+              Admin
+            </Link>
           </div>
 
           <nav className="flex flex-col space-y-4">
             <Link
-              href="/about"
+              href="/thoughts"
               className="font-medium text-base text-muted-foreground hover:text-primary"
             >
-              About
+              Thoughts
             </Link>
             <Link
-              href="/services"
+              href="/books"
               className="font-medium text-base text-muted-foreground hover:text-primary"
             >
-              Services
-            </Link>
-            <Link
-              href="/contact"
-              className="font-medium text-base text-muted-foreground hover:text-primary"
-            >
-              Contact
+              Books
             </Link>
           </nav>
         </div>
