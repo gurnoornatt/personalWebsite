@@ -1,7 +1,7 @@
 {
   "framework": "nextjs",
-  "buildCommand": "pnpm run vercel-build",
-  "installCommand": "pnpm install",
+  "buildCommand": "cd apps/web && npm install && npm run build",
+  "installCommand": "npm install",
   "outputDirectory": "apps/web/.next",
   "headers": [
     {
