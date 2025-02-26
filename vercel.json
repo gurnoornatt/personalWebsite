@@ -3,9 +3,6 @@
   "buildCommand": "pnpm run build",
   "installCommand": "pnpm install",
   "framework": "nextjs",
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/apps/web/$1" }
-  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -23,25 +20,6 @@
           "value": "1; mode=block"
         }
       ]
-    }
-  ],
-  "env": {
-    "NEXT_PUBLIC_API_URL": "https://api.gurnoor.dev"
-  },
-  "builds": [
-    {
-      "src": "apps/web/next.config.js",
-      "use": "@vercel/next"
-    },
-    {
-      "src": "apps/api/src/index.ts",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "apps/api/src/index.ts"
     }
   ]
 } 
