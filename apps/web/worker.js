@@ -1,5 +1,5 @@
 // Cloudflare Worker script for Next.js application
-// This script doesn't rely on Node.js modules
+// This script doesn't rely on Node.js modules or KV storage
 
 export default {
   async fetch(request, env, ctx) {
@@ -15,16 +15,27 @@ export default {
     }
 
     try {
+      // Skip cache files completely
+      if (pathname.includes('/cache/') || pathname.includes('/.next/cache/')) {
+        return new Response('Not found', { status: 404 });
+      }
+
       // Handle static assets (/_next/static/*)
-      if (pathname.includes('/_next/static/')) {
-        // Cloudflare Pages will handle this automatically
+      if (pathname.includes('/_next/static/') || 
+          pathname.endsWith('.js') || 
+          pathname.endsWith('.css') ||
+          pathname.endsWith('.json') ||
+          pathname.endsWith('.ico') ||
+          pathname.endsWith('.png') ||
+          pathname.endsWith('.jpg') ||
+          pathname.endsWith('.svg')) {
+        // Let Cloudflare Pages handle the static asset
         return fetch(request);
       }
 
       // Handle API routes (/api/*)
       if (pathname.startsWith('/api/')) {
-        // Fetch the API route - this would be a separate Cloudflare Function
-        // Cloudflare Pages function routing will handle this
+        // Let Cloudflare Functions handle the API route
         return fetch(request);
       }
 

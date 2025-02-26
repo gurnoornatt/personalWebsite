@@ -20,12 +20,12 @@ Use the following build configuration settings:
 
 - **Framework preset**: Custom
 - **Build command**: `cd apps/web && pnpm install && pnpm run build`
-- **Build output directory**: `apps/web/.next`
+- **Build output directory**: `apps/web/.next-deploy`
 - **Root directory**: `/` (repository root)
 - **Node.js version**: 18 (or higher)
 - **Deploy command**: `chmod +x deploy.sh && ./deploy.sh`
 
-> **IMPORTANT**: Cloudflare Workers does not support Node.js built-in modules. Our deployment uses a simple Worker script compatible with Cloudflare's environment.
+> **IMPORTANT**: Cloudflare has a 25 MiB file size limit for KV storage. Our deployment script creates a modified `.next-deploy` directory that excludes large files like webpack cache.
 
 ## Environment Variables
 
@@ -48,14 +48,15 @@ Add the following compatibility flags in the Cloudflare dashboard:
 
 ## The Deployment Approach
 
-This project uses a simplified approach for deploying Next.js to Cloudflare Pages:
+This project uses a specialized approach for deploying Next.js to Cloudflare Pages:
 
 1. The Next.js application is built normally with `next build`
-2. A simple Cloudflare Worker script (`worker.js`) handles routing
-3. Static assets are served directly by Cloudflare Pages
-4. API routes are handled by Cloudflare Functions
+2. Large files (webpack cache, etc.) are excluded from deployment
+3. A simple Cloudflare Worker script handles routing without using KV storage
+4. Static assets are served directly by Cloudflare Pages
+5. API routes are handled by Cloudflare Functions
 
-This approach avoids issues with Node.js dependencies that aren't supported in the Cloudflare Workers environment.
+This approach avoids the 25 MiB file size limit in Cloudflare's KV storage.
 
 ## Manual Deployment
 
@@ -68,10 +69,13 @@ cd apps/web
 # Build the application
 pnpm run build
 
+# Create a deployment directory without large files
+mkdir -p .next-deploy
+cp -r .next/* .next-deploy/
+rm -rf .next-deploy/cache
+
 # Deploy to Cloudflare
-pnpm run deploy
-# OR directly with Wrangler
-npx wrangler deploy worker.js
+npx wrangler deploy worker.js --no-bundle
 ```
 
 ## Post-Deployment
@@ -86,10 +90,10 @@ After deployment, check the following:
 
 If you encounter issues with the deployment:
 
-1. **"No such module" errors**:
-   - This indicates your script is using Node.js modules that aren't supported in Cloudflare Workers
-   - Remove any imports that use the `node:` prefix (e.g., `node:http`, `node:fs`, etc.)
-   - Use only Web API features available in the Cloudflare Workers runtime
+1. **"File is too big" errors**:
+   - This indicates you're hitting Cloudflare's 25 MiB KV storage limit
+   - Make sure the `.cfignore` file and `exclude` settings are properly configured
+   - Check that the deploy script is correctly skipping large files
 
 2. **Worker name mismatch**:
    - If you see a warning about Worker name mismatch, update the `name` field in `wrangler.toml` to match what Cloudflare expects (usually "site")
@@ -103,4 +107,4 @@ If you encounter issues with the deployment:
 
 - [Cloudflare Pages documentation](https://developers.cloudflare.com/pages/)
 - [Cloudflare Workers documentation](https://developers.cloudflare.com/workers/)
-- [Cloudflare Workers runtime API](https://developers.cloudflare.com/workers/runtime-apis/) 
+- [Cloudflare KV storage limits](https://developers.cloudflare.com/workers/platform/limits#kv-limits) 

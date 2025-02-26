@@ -1,0 +1,15 @@
+# Exclude cache files
+.next/cache
+.next/cache/webpack
+.next/trace
+.vercel/
+node_modules/
+
+# Large webpack bundles
+**/*.pack
+**/*.pack.*
+
+# Development files
+.git/
+.github/
+.vscode/ 

@@ -15,4 +15,10 @@ NODE_VERSION = "18"
 
 # Define how assets are served
 [site]
-bucket = "apps/web/.next" 
+bucket = "apps/web/.next"
+exclude = [
+  "apps/web/.next/cache/**/*",
+  "**/*.pack",
+  "**/*.pack.*",
+  "node_modules/**/*"
+] 

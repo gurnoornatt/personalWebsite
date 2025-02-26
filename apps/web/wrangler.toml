@@ -8,6 +8,13 @@ NODE_VERSION = "18"
 
 [site]
 bucket = ".next"
+# Exclude large files from upload
+exclude = [
+  ".next/cache/**/*",
+  "**/*.pack",
+  "**/*.pack.*",
+  "node_modules/**/*"
+]
 
 # Add main entry point for Wrangler
 main = "worker.js"
@@ -27,4 +34,4 @@ name = "site-preview"
 [functions]
 directory = ".next/server/pages"
 include = ["apps/web/.next/server/pages/**/*.js"]
-exclude = ["node_modules/**/*", ".git/**/*"] 
+exclude = ["node_modules/**/*", ".git/**/*", ".next/cache/**/*", "**/*.pack", "**/*.pack.*"] 
