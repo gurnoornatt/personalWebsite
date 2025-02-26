@@ -39,9 +39,24 @@ export default {
         return fetch(request);
       }
 
-      // For all other routes, let Cloudflare Pages handle them
-      return fetch(request);
+      // For all other routes, including dynamic routes
+      const response = await fetch(request);
+      
+      // If the response is a 404, try serving the index page instead
+      // This allows client-side routing to take over for dynamic routes
+      if (response.status === 404 && !pathname.includes('.')) {
+        console.log(`Handling 404 for path: ${pathname}, falling back to index.html`);
+        const indexResponse = await fetch(new URL('/', url));
+        return new Response(await indexResponse.text(), {
+          headers: {
+            'content-type': 'text/html; charset=UTF-8',
+          },
+        });
+      }
+
+      return response;
     } catch (e) {
+      console.error(`Worker error for ${pathname}:`, e);
       return errorResponse(`Worker error: ${e.message}`);
     }
   },

@@ -52,11 +52,12 @@ This project uses a specialized approach for deploying Next.js to Cloudflare Pag
 
 1. The Next.js application is built normally with `next build`
 2. Large files (webpack cache, etc.) are excluded from deployment
-3. A simple Cloudflare Worker script handles routing without using KV storage
+3. A specialized Cloudflare Worker script handles routing with fallbacks for dynamic routes
 4. Static assets are served directly by Cloudflare Pages
 5. API routes are handled by Cloudflare Functions
+6. 404 errors for client-side routes are handled by falling back to the index.html
 
-This approach avoids the 25 MiB file size limit in Cloudflare's KV storage.
+This approach avoids the 25 MiB file size limit in Cloudflare's KV storage and properly handles dynamic routes.
 
 ## Manual Deployment
 
@@ -74,6 +75,12 @@ mkdir -p .next-deploy
 cp -r .next/* .next-deploy/
 rm -rf .next-deploy/cache
 
+# Ensure SSR files are properly included
+mkdir -p .next-deploy/server/pages
+mkdir -p .next-deploy/server/chunks
+cp -r .next/server/pages/* .next-deploy/server/pages/ 2>/dev/null || true
+cp -r .next/server/chunks/* .next-deploy/server/chunks/ 2>/dev/null || true
+
 # Deploy to Cloudflare
 npx wrangler deploy worker.js --no-bundle
 ```
@@ -83,28 +90,34 @@ npx wrangler deploy worker.js --no-bundle
 After deployment, check the following:
 
 1. Verify that all pages load correctly
-2. Test API routes if applicable
-3. Check that static assets are served correctly
+2. Test dynamic routes specifically (e.g., `/posts/[id]`)
+3. Test API routes if applicable
+4. Check that static assets are served correctly
 
-## Troubleshooting
+## Troubleshooting 404 Errors
 
-If you encounter issues with the deployment:
+If you encounter 404 errors on specific routes:
 
-1. **"File is too big" errors**:
-   - This indicates you're hitting Cloudflare's 25 MiB KV storage limit
-   - Make sure the `.cfignore` file and `exclude` settings are properly configured
-   - Check that the deploy script is correctly skipping large files
+1. **Dynamic Routes**:
+   - Check that the worker.js file is correctly handling 404 responses by falling back to index.html
+   - Verify that _routes.json has the correct fallback configuration
+   - Test both direct URL access and client-side navigation to the route
 
-2. **Worker name mismatch**:
-   - If you see a warning about Worker name mismatch, update the `name` field in `wrangler.toml` to match what Cloudflare expects (usually "site")
+2. **API Routes**:
+   - Ensure Cloudflare Functions are properly enabled in your project settings
+   - Check the Functions log in the Cloudflare dashboard for any errors
 
-3. **Other issues**:
-   - Check the build logs for errors
-   - Verify that the build output directory is correct
-   - Ensure static assets are being generated correctly
+3. **Static Assets**:
+   - Make sure static assets are being correctly included in the deployment
+   - Verify paths in your application match the expected structure
+
+4. **Server-Side Rendering Issues**:
+   - If using getServerSideProps, consider switching to getStaticProps with fallback: true
+   - Check that SSR files are being correctly deployed in .next-deploy/server/
 
 ## Additional Resources
 
 - [Cloudflare Pages documentation](https://developers.cloudflare.com/pages/)
 - [Cloudflare Workers documentation](https://developers.cloudflare.com/workers/)
-- [Cloudflare KV storage limits](https://developers.cloudflare.com/workers/platform/limits#kv-limits) 
+- [Cloudflare KV storage limits](https://developers.cloudflare.com/workers/platform/limits#kv-limits)
+- [Next.js Static and Dynamic Routing](https://nextjs.org/docs/routing/introduction) 
