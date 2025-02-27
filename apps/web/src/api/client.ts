@@ -5,7 +5,9 @@ import type { AppType } from "../../../api/src";
 export type { InferRequestType, InferResponseType } from "hono/client";
 
 const getBaseUrl = () => {
-  return process.env.NEXT_PUBLIC_API_URL || 'https://api.yourdomain.com';
+  // For Vercel, we can use relative URLs for API routes
+  // This will automatically work for both local development and production
+  return '';
 };
 
 export const apiRpc = hc<AppType>(getBaseUrl(), {
