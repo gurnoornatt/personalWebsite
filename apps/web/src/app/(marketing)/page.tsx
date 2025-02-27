@@ -3,30 +3,34 @@
 import { useState, useEffect } from 'react';
 import Link from "next/link";
 
+// Version marker to verify we're seeing the latest deployment
+// NEW VERSION - Updated Feb 27, 2024
+console.log('Home page version: Feb 27, 2024 - NEW VERSION');
+
 // Default profile data
 const defaultProfile = {
-  name: 'Gurnoor Natt',
-  mainBio: 'An undergrad at University of San Francisco building an AI-powered platform that provides speech therapy for neurodivergent children.',
-  secondaryBio: 'Software engineering bandwidth and genius ideas are the bottlenecks to rapid AI progress. My work is an attempt at solving the former. In doing so, more talent, effort, and resources can be devoted to the latter.'
+  name: 'Gurnoor Natt - NEW VERSION',
+  mainBio: 'This is the NEW VERSION of the site. If you see this, the deployment worked correctly!',
+  secondaryBio: 'The old version showed text about AI-powered platform for neurodivergent children. This new version should replace that content.'
 };
 
 // Default social links
 const defaultSocialLinks = [
   {
     id: '1',
-    platform: 'Twitter',
-    url: 'https://twitter.com/yourusername',
+    platform: 'Twitter (New Version)',
+    url: 'https://twitter.com/yourhandle',
     icon: 'twitter'
   },
   {
     id: '2',
-    platform: 'GitHub',
+    platform: 'GitHub (New Version)',
     url: 'https://github.com/yourusername',
     icon: 'github'
   },
   {
     id: '3',
-    platform: 'LinkedIn',
+    platform: 'LinkedIn (New Version)',
     url: 'https://linkedin.com/in/yourusername',
     icon: 'linkedin'
   }

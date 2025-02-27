@@ -27,7 +27,25 @@ const nextConfig = {
   // Skip type checking during build
   typescript: {
     ignoreBuildErrors: true,
-  }
+  },
+  // Make sure we're not using cached data
+  headers: async () => {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-store, max-age=0',
+          },
+          {
+            key: 'X-Version',
+            value: 'new-version-feb-27-2024',
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
