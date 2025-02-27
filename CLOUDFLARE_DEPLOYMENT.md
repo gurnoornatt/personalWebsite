@@ -14,7 +14,26 @@ This document provides instructions for deploying this Next.js application to Cl
 3. Click "Create a project" or select your existing project
 4. Connect your GitHub repository if not already connected
 
-## Build Configuration
+## API Subdomain Setup (Important to Fix Error 1042)
+
+To avoid Cloudflare Error 1042 (Worker-to-Worker communication on the same zone), follow these steps to set up an API subdomain:
+
+1. In your Cloudflare dashboard, go to the DNS settings for your domain
+2. Add a new DNS record:
+   - Type: A
+   - Name: api
+   - IPv4 address: 192.0.2.1 (This is just a placeholder, Cloudflare will proxy it)
+   - Proxy status: Proxied
+
+3. Deploy the API Worker:
+   ```bash
+   chmod +x deploy-api.sh
+   ./deploy-api.sh
+   ```
+
+4. Verify the API subdomain is working by visiting `https://api.yourdomain.com/posts`
+
+## Web App Build Configuration
 
 Use the following build configuration settings:
 
@@ -31,7 +50,7 @@ Use the following build configuration settings:
 
 Add the following environment variables in the Cloudflare Pages dashboard:
 
-- `NEXT_PUBLIC_API_URL`: Your API URL (e.g., https://api.gurnoor.dev)
+- `NEXT_PUBLIC_API_URL`: `https://api.yourdomain.com` (must use the API subdomain)
 - `NODE_VERSION`: 18
 
 ## Advanced Settings
@@ -54,7 +73,7 @@ This project uses a specialized approach for deploying Next.js to Cloudflare Pag
 2. Large files (webpack cache, etc.) are excluded from deployment
 3. A specialized Cloudflare Worker script handles routing with fallbacks for dynamic routes
 4. Static assets are served directly by Cloudflare Pages
-5. API routes are handled by Cloudflare Functions
+5. API calls are redirected to a separate subdomain to avoid Error 1042
 6. 404 errors for client-side routes are handled by falling back to the index.html
 
 This approach avoids the 25 MiB file size limit in Cloudflare's KV storage and properly handles dynamic routes.
@@ -64,10 +83,12 @@ This approach avoids the 25 MiB file size limit in Cloudflare's KV storage and p
 If you prefer to deploy manually, you can use the following commands:
 
 ```bash
-# Navigate to the web app directory
-cd apps/web
+# Deploy the API Worker first
+cd apps/api
+npx wrangler deploy worker.js --name=api-worker
 
-# Build the application
+# Then deploy the web app
+cd ../web
 pnpm run build
 
 # Create a deployment directory without large files
@@ -91,7 +112,7 @@ After deployment, check the following:
 
 1. Verify that all pages load correctly
 2. Test dynamic routes specifically (e.g., `/posts/[id]`)
-3. Test API routes if applicable
+3. Test API routes by confirming they're redirected to the API subdomain
 4. Check that static assets are served correctly
 
 ## Troubleshooting 404 Errors
@@ -104,8 +125,9 @@ If you encounter 404 errors on specific routes:
    - Test both direct URL access and client-side navigation to the route
 
 2. **API Routes**:
-   - Ensure Cloudflare Functions are properly enabled in your project settings
-   - Check the Functions log in the Cloudflare dashboard for any errors
+   - Ensure the API subdomain is correctly set up in Cloudflare DNS
+   - Verify the API Worker is deployed and responding correctly
+   - Check the console logs for any errors in the API redirection
 
 3. **Static Assets**:
    - Make sure static assets are being correctly included in the deployment
@@ -114,6 +136,15 @@ If you encounter 404 errors on specific routes:
 4. **Server-Side Rendering Issues**:
    - If using getServerSideProps, consider switching to getStaticProps with fallback: true
    - Check that SSR files are being correctly deployed in .next-deploy/server/
+
+## Troubleshooting Error 1042
+
+If you're still encountering Error 1042 (Worker-to-Worker communication error):
+
+1. Verify that your API requests are being redirected to the API subdomain
+2. Check that the `NEXT_PUBLIC_API_URL` is set to use the API subdomain
+3. Look for any hardcoded API URLs in your code that might be using the main domain
+4. Ensure the API Worker is deployed and functioning correctly
 
 ## Additional Resources
 

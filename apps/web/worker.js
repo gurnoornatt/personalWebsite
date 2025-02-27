@@ -5,6 +5,7 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const { pathname } = url;
+    const { hostname } = url;
 
     // Helper to return a Response with an error
     function errorResponse(message, status = 500) {
@@ -33,10 +34,24 @@ export default {
         return fetch(request);
       }
 
-      // Handle API routes (/api/*)
+      // Handle API routes (/api/*) by redirecting to subdomain
+      // This prevents Worker-to-Worker communication errors (Error 1042)
       if (pathname.startsWith('/api/')) {
-        // Let Cloudflare Functions handle the API route
-        return fetch(request);
+        // Get the base domain without subdomains (e.g., example.com from www.example.com)
+        const baseDomain = hostname.split('.').slice(-2).join('.');
+        
+        // Build the API subdomain URL 
+        const apiPath = pathname.substring(5); // Remove '/api/'
+        const apiUrl = new URL(`https://api.${baseDomain}/${apiPath}${url.search}`);
+        
+        console.log(`Redirecting API request to: ${apiUrl.toString()}`);
+        
+        // Forward the request to the API subdomain
+        return fetch(apiUrl, {
+          method: request.method,
+          headers: request.headers,
+          body: request.body
+        });
       }
 
       // For all other routes, including dynamic routes

@@ -1,0 +1,23 @@
+name = "api-worker"
+main = "worker.js"
+compatibility_date = "2023-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Configure the route to match the api subdomain
+routes = [
+  { pattern = "api.yourdomain.com/*", zone_name = "yourdomain.com" }
+]
+
+# Environment variables
+[vars]
+ENVIRONMENT = "production"
+
+# Environment-specific settings
+[env.production]
+name = "api-worker"
+routes = [
+  { pattern = "api.yourdomain.com/*", zone_name = "yourdomain.com" }
+]
+
+[env.development]
+name = "api-worker-dev" 

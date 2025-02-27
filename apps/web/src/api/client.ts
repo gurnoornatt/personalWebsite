@@ -5,7 +5,7 @@ import type { AppType } from "../../../api/src";
 export type { InferRequestType, InferResponseType } from "hono/client";
 
 const getBaseUrl = () => {
-  return process.env.NEXT_PUBLIC_API_URL!;
+  return process.env.NEXT_PUBLIC_API_URL || 'https://api.yourdomain.com';
 };
 
 export const apiRpc = hc<AppType>(getBaseUrl(), {
