@@ -1,0 +1,11 @@
+# Exclude unnecessary files
+node_modules
+.git
+.github
+.vscode
+.turbo
+.next/cache
+apps/web/.next/cache
+
+# Exclude other apps that aren't needed for web deployment
+apps/api/node_modules 

@@ -6,8 +6,24 @@ This guide provides instructions for deploying this Next.js application to Verce
 
 1. A Vercel account
 2. The GitHub repository connected to Vercel
+3. Vercel CLI installed (`npm install -g vercel`)
 
-## Deployment Steps
+## Deployment Options
+
+### Option 1: Using the Deployment Script (Recommended)
+
+The easiest way to deploy is to use the provided script:
+
+```bash
+./deploy-vercel.sh
+```
+
+This script will:
+1. Install all dependencies
+2. Build the Next.js application
+3. Deploy to Vercel using the CLI
+
+### Option 2: Manual Deployment via Vercel Dashboard
 
 1. Log in to your Vercel account
 2. Click "Add New..." and select "Project"
@@ -15,12 +31,48 @@ This guide provides instructions for deploying this Next.js application to Verce
 4. Configure the project:
    - **Framework Preset**: Next.js
    - **Root Directory**: (leave blank to use repository root)
-   - **Build Command**: `pnpm run build` (should be auto-detected)
-   - **Output Directory**: `apps/web/.next` (should be auto-detected from vercel.json)
-   - **Install Command**: `pnpm install` (should be auto-detected)
+   - **Build Command**: `cd apps/web && pnpm install && pnpm run build`
+   - **Output Directory**: `apps/web/.next`
+   - **Install Command**: `pnpm install --no-frozen-lockfile`
 
 5. Add any environment variables needed for your project in the project settings
 6. Click "Deploy"
+
+### Option 3: Manual Deployment via CLI
+
+Run the following commands:
+
+```bash
+# Install dependencies
+pnpm install --no-frozen-lockfile
+
+# Build the Next.js application
+cd apps/web
+pnpm install --no-frozen-lockfile
+pnpm run build
+
+# Deploy to Vercel
+cd ../..
+vercel --prod
+```
+
+## Environment Variables
+
+Make sure to set the following environment variables in the Vercel dashboard:
+
+- `NEXT_PUBLIC_API_URL`: URL for your API (if applicable)
+- `NEXT_PUBLIC_SITE_URL`: URL for your site
+- `NEXT_PUBLIC_ADMIN_USERNAME`: Username for admin access
+- `NEXT_PUBLIC_ADMIN_PASSWORD`: Password for admin access
+
+## Troubleshooting
+
+If you encounter the error "Warning: Could not identify Next.js version":
+
+1. Make sure you're running the Vercel CLI in the root directory
+2. Check that the `vercel.json` file is correctly configured
+3. Try using the deployment script (`./deploy-vercel.sh`)
+4. If issues persist, try deploying through the Vercel dashboard
 
 ## Vercel Features
 
@@ -43,14 +95,6 @@ To add a custom domain:
 ## Updating Your Deployment
 
 Any push to the main branch will trigger a new deployment automatically. You can also manually trigger a deployment from the Vercel dashboard.
-
-## Troubleshooting
-
-If you encounter any issues with your deployment:
-
-1. Check the build logs in the Vercel dashboard
-2. Verify your environment variables are set correctly
-3. Make sure your repository has the correct configuration in vercel.json
 
 ## Local Development
 
