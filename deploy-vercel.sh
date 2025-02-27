@@ -13,7 +13,7 @@ pnpm install --no-frozen-lockfile
 pnpm run build
 
 echo "Deploying to Vercel..."
-cd ../..
+# Run vercel directly from the web app directory where Next.js is installed
 vercel --prod
 
 echo "Deployment completed!" 

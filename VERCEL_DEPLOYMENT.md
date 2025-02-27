@@ -21,7 +21,7 @@ The easiest way to deploy is to use the provided script:
 This script will:
 1. Install all dependencies
 2. Build the Next.js application
-3. Deploy to Vercel using the CLI
+3. Deploy to Vercel using the CLI directly from the web app directory
 
 ### Option 2: Manual Deployment via Vercel Dashboard
 
@@ -30,9 +30,9 @@ This script will:
 3. Select your GitHub repository
 4. Configure the project:
    - **Framework Preset**: Next.js
-   - **Root Directory**: (leave blank to use repository root)
-   - **Build Command**: `cd apps/web && pnpm install && pnpm run build`
-   - **Output Directory**: `apps/web/.next`
+   - **Root Directory**: apps/web
+   - **Build Command**: `pnpm run build`
+   - **Output Directory**: `.next`
    - **Install Command**: `pnpm install --no-frozen-lockfile`
 
 5. Add any environment variables needed for your project in the project settings
@@ -46,13 +46,10 @@ Run the following commands:
 # Install dependencies
 pnpm install --no-frozen-lockfile
 
-# Build the Next.js application
+# Build the Next.js application and deploy from that directory
 cd apps/web
 pnpm install --no-frozen-lockfile
 pnpm run build
-
-# Deploy to Vercel
-cd ../..
 vercel --prod
 ```
 
@@ -69,10 +66,10 @@ Make sure to set the following environment variables in the Vercel dashboard:
 
 If you encounter the error "Warning: Could not identify Next.js version":
 
-1. Make sure you're running the Vercel CLI in the root directory
-2. Check that the `vercel.json` file is correctly configured
+1. **Key Fix**: Run the Vercel CLI from the `apps/web` directory where Next.js is installed
+2. Make sure you're properly logged into Vercel CLI with `vercel login`
 3. Try using the deployment script (`./deploy-vercel.sh`)
-4. If issues persist, try deploying through the Vercel dashboard
+4. If deploying via the Vercel dashboard, make sure to specify `apps/web` as the root directory
 
 ## Vercel Features
 
