@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-// Sample thoughts data as fallback
-const initialThoughts = [
+// Sample thoughts data - used directly instead of localStorage
+const thoughts = [
   {
     id: "1",
     title: "The Future of AI in Speech Therapy",
@@ -78,79 +78,28 @@ interface Thought {
 export default function ThoughtPage({ params }: { params: { slug: string } }) {
   const [thought, setThought] = useState<Thought | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [slug, setSlug] = useState<string>('');
 
-  // First, set the slug from params
   useEffect(() => {
-    // Handle params.slug
-    const resolveSlug = async () => {
-      try {
-        // In Next.js 15, we need to handle params carefully
-        if (params && params.slug) {
-          // Just use the slug directly - Next.js will handle the Promise internally
-          setSlug(params.slug as string);
-        }
-      } catch (error) {
-        console.error('Error resolving slug:', error);
-      }
-    };
-
-    resolveSlug();
-  }, [params]);
-
-  // Then, fetch the thought once we have the slug
-  useEffect(() => {
-    if (!slug) return;
-
-    const fetchThought = () => {
-      try {
-        // Ensure we're in a browser environment
-        if (typeof window !== 'undefined') {
-          // Try to get thoughts from localStorage
-          const stored = localStorage.getItem('thoughts');
-          let thoughts = initialThoughts;
-          
-          if (stored) {
-            thoughts = JSON.parse(stored);
-          }
-          
-          // Find the thought with the matching slug
-          const foundThought = thoughts.find((t) => t.slug === slug);
-          
-          if (foundThought) {
-            setThought(foundThought);
-          } else {
-            // If not found in localStorage, check the initial data
-            const fallbackThought = initialThoughts.find((t) => t.slug === slug);
-            if (fallbackThought) {
-              setThought(fallbackThought);
-            }
-          }
-        } else {
-          // If we're server-side, use the initial data
-          const fallbackThought = initialThoughts.find((t) => t.slug === slug);
-          if (fallbackThought) {
-            setThought(fallbackThought);
-          }
-        }
-      } catch (error) {
-        console.error('Error loading thought:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchThought();
-  }, [slug]);
+    if (!params.slug) return;
+    
+    // Find the thought with the matching slug directly from our data
+    const foundThought = thoughts.find((t) => t.slug === params.slug);
+    
+    if (foundThought) {
+      setThought(foundThought);
+    }
+    
+    setIsLoading(false);
+  }, [params.slug]);
 
   // Show 404 if thought is not found after loading
-  if (!isLoading && !thought && slug) {
+  if (!isLoading && !thought && params.slug) {
     notFound();
   }
 
   return (
     <main className="flex flex-1 flex-col items-center justify-center py-12 px-4 md:px-8 max-w-2xl mx-auto">
-      {isLoading || !slug ? (
+      {isLoading ? (
         <div className="flex justify-center py-12">
           <div className="animate-pulse text-center">
             <p className="text-muted-foreground">Loading thought...</p>

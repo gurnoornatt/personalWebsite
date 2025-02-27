@@ -1,21 +1,20 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Link from "next/link";
 
 // Version marker to verify we're seeing the latest deployment
 // NEW VERSION - Updated Feb 27, 2024
 console.log('Home page version: Feb 27, 2024 - NEW VERSION');
 
-// Default profile data
-const defaultProfile = {
+// Profile data - directly used instead of localStorage
+const profile = {
   name: 'Gurnoor Natt - NEW VERSION',
   mainBio: 'This is the NEW VERSION of the site. If you see this, the deployment worked correctly!',
   secondaryBio: 'The old version showed text about AI-powered platform for neurodivergent children. This new version should replace that content.'
 };
 
-// Default social links
-const defaultSocialLinks = [
+// Social links - directly used instead of localStorage
+const socialLinks = [
   {
     id: '1',
     platform: 'Twitter (New Version)',
@@ -37,47 +36,8 @@ const defaultSocialLinks = [
 ];
 
 export default function Home() {
-  const [profile, setProfile] = useState(defaultProfile);
-  const [socialLinks, setSocialLinks] = useState(defaultSocialLinks);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const loadData = () => {
-      try {
-        // Ensure we're in a browser environment before accessing localStorage
-        if (typeof window !== 'undefined') {
-          // Load profile data
-          const storedProfile = localStorage.getItem('profile');
-          if (storedProfile) {
-            setProfile(JSON.parse(storedProfile));
-          }
-
-          // Load social links
-          const storedLinks = localStorage.getItem('socialLinks');
-          if (storedLinks) {
-            setSocialLinks(JSON.parse(storedLinks));
-          }
-        }
-      } catch (error) {
-        console.error('Error loading data:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    loadData();
-  }, []);
-
-  if (isLoading) {
-    return (
-      <main className="flex flex-1 flex-col items-center justify-center py-12 px-4 md:px-8 max-w-2xl mx-auto">
-        <div className="animate-pulse text-center">
-          <p className="text-muted-foreground">Loading...</p>
-        </div>
-      </main>
-    );
-  }
-
+  // No useState or useEffect needed since we're using the data directly
+  
   return (
     <main className="flex flex-1 flex-col items-center justify-center py-12 px-4 md:px-8 max-w-2xl mx-auto">
       <div className="w-full space-y-10">
