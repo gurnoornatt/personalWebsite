@@ -34,23 +34,23 @@ export default {
         return fetch(request);
       }
 
-      // Handle API routes (/api/*) by redirecting to subdomain
-      // This prevents Worker-to-Worker communication errors (Error 1042)
+      // Handle API routes directly in the main worker
       if (pathname.startsWith('/api/')) {
-        // Get the base domain without subdomains (e.g., example.com from www.example.com)
-        const baseDomain = hostname.split('.').slice(-2).join('.');
+        // Simple example implementation
+        if (pathname === '/api/posts' && request.method === 'GET') {
+          const posts = [
+            { id: '1', title: 'First Post', content: 'This is content', createdAt: new Date().toISOString() },
+            { id: '2', title: 'Second Post', content: 'More content', createdAt: new Date().toISOString() }
+          ];
+          return new Response(JSON.stringify(posts), {
+            headers: { 'Content-Type': 'application/json' }
+          });
+        }
         
-        // Build the API subdomain URL 
-        const apiPath = pathname.substring(5); // Remove '/api/'
-        const apiUrl = new URL(`https://api.${baseDomain}/${apiPath}${url.search}`);
-        
-        console.log(`Redirecting API request to: ${apiUrl.toString()}`);
-        
-        // Forward the request to the API subdomain
-        return fetch(apiUrl, {
-          method: request.method,
-          headers: request.headers,
-          body: request.body
+        // Default API response
+        return new Response(JSON.stringify({ error: 'Not implemented' }), {
+          status: 501,
+          headers: { 'Content-Type': 'application/json' }
         });
       }
 
