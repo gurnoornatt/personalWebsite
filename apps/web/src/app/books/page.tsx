@@ -72,30 +72,34 @@ export default function BooksPage() {
   return (
     <main className="flex flex-1 flex-col items-center justify-center py-12 px-4 md:px-8 max-w-2xl mx-auto">
       <div className="w-full space-y-10">
-        {/* Header with navigation back to home */}
-        <div className="flex justify-between items-center">
-          <Link href="/" className="text-base font-medium hover:text-muted-foreground transition-colors">
+        {/* Header */}
+        <div className="flex justify-center items-center">
+          <h1 className="text-2xl font-medium">Books</h1>
+        </div>
+        
+        {/* Navigation Link */}
+        <div className="flex justify-center items-center">
+          <Link href="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             Gurnoor Natt
           </Link>
-          <h1 className="text-xl font-medium">Books</h1>
         </div>
 
         {/* Books List */}
         {isLoading ? (
-          <div className="flex justify-center py-12">
+          <div className="flex justify-center py-6">
             <div className="animate-pulse text-center">
               <p className="text-muted-foreground">Loading books...</p>
             </div>
           </div>
         ) : books.length === 0 ? (
-          <div className="text-center py-12">
+          <div className="text-center py-6">
             <p className="text-muted-foreground">No books added yet.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-8 mt-6">
             {books.map((book) => (
-              <div key={book.id} className="flex space-x-3">
-                <div className="relative w-20 h-30 flex-shrink-0 overflow-hidden rounded-md">
+              <div key={book.id} className="flex space-x-4">
+                <div className="relative w-20 h-30 flex-shrink-0 overflow-hidden rounded-sm">
                   {book.coverImage ? (
                     <Image
                       src={book.coverImage}
@@ -114,25 +118,18 @@ export default function BooksPage() {
                   )}
                 </div>
                 <div className="flex flex-col space-y-1">
-                  <h2 className="text-sm font-medium">{book.title}</h2>
-                  <p className="text-xs text-muted-foreground">{book.author}</p>
+                  <h2 className="text-base">{book.title}</h2>
+                  <p className="text-sm text-muted-foreground">{book.author}</p>
                   <div className="flex items-center space-x-2">
-                    <span className={`text-xs px-2 py-0.5 rounded-full ${
-                      book.status === "Read" 
-                        ? "bg-green-500/10 text-green-500" 
-                        : book.status === "Currently Reading"
-                        ? "bg-blue-500/10 text-blue-500"
-                        : "bg-gray-500/10 text-gray-500"
-                    }`}>
+                    <span className="text-xs text-muted-foreground">
                       {book.status}
                     </span>
                     {book.rating && (
-                      <span className="text-xs text-yellow-500">
-                        {"★".repeat(book.rating)}{"☆".repeat(5 - book.rating)}
+                      <span className="text-xs text-muted-foreground">
+                        {"★".repeat(book.rating)}
                       </span>
                     )}
                   </div>
-                  {book.notes && <p className="text-xs text-muted-foreground">{book.notes}</p>}
                 </div>
               </div>
             ))}

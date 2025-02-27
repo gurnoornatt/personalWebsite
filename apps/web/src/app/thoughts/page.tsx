@@ -57,33 +57,37 @@ export default function ThoughtsPage() {
   return (
     <main className="flex flex-1 flex-col items-center justify-center py-12 px-4 md:px-8 max-w-2xl mx-auto">
       <div className="w-full space-y-10">
-        {/* Header with navigation back to home */}
-        <div className="flex justify-between items-center">
-          <Link href="/" className="text-base font-medium hover:text-muted-foreground transition-colors">
+        {/* Header */}
+        <div className="flex justify-center items-center">
+          <h1 className="text-2xl font-medium">Thoughts</h1>
+        </div>
+        
+        {/* Navigation Link */}
+        <div className="flex justify-center items-center">
+          <Link href="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             Gurnoor Natt
           </Link>
-          <h1 className="text-xl font-medium">Thoughts</h1>
         </div>
 
         {/* Thoughts List */}
         {isLoading ? (
-          <div className="flex justify-center py-12">
+          <div className="flex justify-center py-6">
             <div className="animate-pulse text-center">
               <p className="text-muted-foreground">Loading thoughts...</p>
             </div>
           </div>
         ) : thoughts.length === 0 ? (
-          <div className="text-center py-12">
+          <div className="text-center py-6">
             <p className="text-muted-foreground">No thoughts yet.</p>
           </div>
         ) : (
-          <div className="space-y-8">
+          <div className="space-y-6 mt-6">
             {thoughts.map((thought) => (
-              <article key={thought.id} className="space-y-2">
+              <article key={thought.id} className="space-y-1">
                 <div className="flex items-center space-x-2">
                   <time className="text-xs text-muted-foreground">{thought.date}</time>
                 </div>
-                <h2 className="text-base font-medium">
+                <h2 className="text-base">
                   <Link 
                     href={`/thoughts/${thought.slug}`} 
                     className="hover:text-muted-foreground transition-colors"

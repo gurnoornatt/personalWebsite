@@ -42,41 +42,57 @@ export default function Home() {
     <main className="flex flex-1 flex-col items-center justify-center py-12 px-4 md:px-8 max-w-2xl mx-auto">
       <div className="w-full space-y-10">
         {/* Header with Name */}
-        <div className="flex justify-between items-center">
-          <h1 className="text-xl font-medium">{profile.name}</h1>
-          <nav className="flex space-x-6">
-            <Link href="/thoughts" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Thoughts
-            </Link>
-            <Link href="/books" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Books
-            </Link>
-          </nav>
+        <div className="flex justify-center items-center">
+          <h1 className="text-2xl font-medium">Gurnoor Natt</h1>
+        </div>
+
+        {/* Navigation */}
+        <div className="flex justify-center items-center space-x-6">
+          <Link href="/thoughts" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            Thoughts
+          </Link>
+          <Link href="/books" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            Books
+          </Link>
         </div>
 
         {/* Bio Section */}
-        <div className="space-y-4">
+        <div className="space-y-4 mt-8">
           <p className="text-base">
-            {profile.mainBio}
-          </p>
-          <p className="text-sm text-muted-foreground">
-            {profile.secondaryBio}
+            Software engineering bandwidth and genius ideas are the bottlenecks to rapid AI progress. 
+            <Link href="https://cursor.sh" className="mx-1 hover:underline">
+              Cursor
+            </Link>
+            is our attempt at solving the former. In doing so, more talent, effort, and resources can be devoted to the latter.
           </p>
         </div>
 
         {/* Social Links */}
-        <div className="flex flex-col space-y-2">
-          {socialLinks.map((link) => (
-            <Link 
-              key={link.id}
-              href={link.url} 
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {link.platform}
-            </Link>
-          ))}
+        <div className="flex flex-col space-y-2 mt-8">
+          <Link 
+            href="https://x.com/noorcmd" 
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Twitter
+          </Link>
+          <Link 
+            href="https://github.com/gurnoornatt" 
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Github
+          </Link>
+          <Link 
+            href="https://www.linkedin.com/in/gurnoor-natt-24577a245/" 
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn
+          </Link>
         </div>
       </div>
     </main>
