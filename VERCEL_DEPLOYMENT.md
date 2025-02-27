@@ -10,9 +10,27 @@ This guide provides instructions for deploying this Next.js application to Verce
 
 ## Deployment Options
 
-### Option 1: Using the Deployment Script (Recommended)
+### Option 1: GitHub Integration (Recommended)
 
-The easiest way to deploy is to use the provided script:
+The most reliable way to deploy is through Vercel's GitHub integration:
+
+1. Go to https://vercel.com/dashboard
+2. Click "Add New..." and select "Project"
+3. Import your GitHub repository
+4. Configure the project:
+   - **Framework Preset**: Next.js
+   - **Root Directory**: apps/web
+   - **Build Command**: `pnpm run build`
+   - **Output Directory**: `.next`
+   - **Install Command**: `pnpm install --no-frozen-lockfile`
+5. Add any required environment variables
+6. Click "Deploy"
+
+Your site will automatically deploy whenever you push to your GitHub repository.
+
+### Option 2: Using the Deployment Script
+
+Note: Free tier accounts have a limit of 100 CLI deployments per day.
 
 ```bash
 ./deploy-vercel.sh
@@ -22,21 +40,6 @@ This script will:
 1. Install all dependencies
 2. Build the Next.js application
 3. Deploy to Vercel using the CLI directly from the web app directory
-
-### Option 2: Manual Deployment via Vercel Dashboard
-
-1. Log in to your Vercel account
-2. Click "Add New..." and select "Project"
-3. Select your GitHub repository
-4. Configure the project:
-   - **Framework Preset**: Next.js
-   - **Root Directory**: apps/web
-   - **Build Command**: `pnpm run build`
-   - **Output Directory**: `.next`
-   - **Install Command**: `pnpm install --no-frozen-lockfile`
-
-5. Add any environment variables needed for your project in the project settings
-6. Click "Deploy"
 
 ### Option 3: Manual Deployment via CLI
 
@@ -70,6 +73,10 @@ If you encounter the error "Warning: Could not identify Next.js version":
 2. Make sure you're properly logged into Vercel CLI with `vercel login`
 3. Try using the deployment script (`./deploy-vercel.sh`)
 4. If deploying via the Vercel dashboard, make sure to specify `apps/web` as the root directory
+
+If you hit the "Resource is limited" error (more than 100 deployments per day):
+1. Use the GitHub integration instead (Option 1)
+2. Wait until the next day to deploy via CLI again
 
 ## Vercel Features
 
