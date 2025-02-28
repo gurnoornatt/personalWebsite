@@ -8,30 +8,48 @@ import Image from "next/image";
 const initialBooks = [
   {
     id: "1",
-    title: "Thinking, Fast and Slow",
-    author: "Daniel Kahneman",
-    coverImage: "https://m.media-amazon.com/images/I/61fdrEuPJwL._SL1500_.jpg",
+    title: "The Count of Monte Cristo",
+    author: "Alexandre Dumas",
+    coverImage: "https://m.media-amazon.com/images/I/81Y8QLPFFlL._SL1500_.jpg",
     status: "Read",
     rating: 5,
-    notes: "A fascinating exploration of the two systems that drive the way we think."
+    notes: "A masterpiece of adventure and revenge."
   },
   {
     id: "2",
-    title: "Atomic Habits",
-    author: "James Clear",
-    coverImage: "https://m.media-amazon.com/images/I/81wgcld4wxL._SL1500_.jpg",
-    status: "Currently Reading",
-    rating: 4,
-    notes: "Practical strategies for forming good habits and breaking bad ones."
+    title: "A Gentleman in Moscow",
+    author: "Amor Towles",
+    coverImage: "https://m.media-amazon.com/images/I/91N22NRvKoL._SL1500_.jpg",
+    status: "Read",
+    rating: 5,
+    notes: "An elegant tale of a count living under house arrest in a luxury hotel."
   },
   {
     id: "3",
-    title: "Superintelligence",
-    author: "Nick Bostrom",
-    coverImage: "https://m.media-amazon.com/images/I/61fdrEuPJwL._SL1500_.jpg",
-    status: "Want to Read",
-    rating: null,
-    notes: ""
+    title: "Perfume: The Story of a Murderer",
+    author: "Patrick Süskind",
+    coverImage: "https://m.media-amazon.com/images/I/71QcX1DbYML._SL1360_.jpg",
+    status: "Read",
+    rating: 4,
+    notes: "A dark and haunting tale about the sense of smell and obsession."
+  },
+  {
+    id: "4",
+    title: "Dune",
+    author: "Frank Herbert",
+    coverImage: "https://m.media-amazon.com/images/I/91Fq9Nx-sTL._SL1500_.jpg",
+    status: "Read",
+    rating: 5,
+    notes: "The quintessential sci-fi epic about politics, religion, and ecology."
+  },
+  {
+    id: "5",
+    title: "Project Hail Mary",
+    author: "Andy Weir",
+    coverImage: "https://m.media-amazon.com/images/I/91vS2L5YfEL._SL1500_.jpg",
+    status: "Read",
+    rating: 5,
+    notes: "A thrilling sci-fi adventure about a lone astronaut's mission to save humanity."
   },
 ];
 
