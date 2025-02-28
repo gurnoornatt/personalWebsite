@@ -10,7 +10,7 @@ const initialBooks = [
     id: "1",
     title: "The Count of Monte Cristo",
     author: "Alexandre Dumas",
-    coverImage: "https://m.media-amazon.com/images/I/81Y8QLPFFlL._SL1500_.jpg",
+    coverImage: "https://m.media-amazon.com/images/I/51vLF+HXUtL._SY445_SX342_.jpg",
     status: "Read",
     rating: 5,
     notes: "A masterpiece of adventure and revenge."
@@ -37,7 +37,7 @@ const initialBooks = [
     id: "4",
     title: "Dune",
     author: "Frank Herbert",
-    coverImage: "https://m.media-amazon.com/images/I/91Fq9Nx-sTL._SL1500_.jpg",
+    coverImage: "https://m.media-amazon.com/images/I/41PJiMChVZL._SY445_SX342_.jpg",
     status: "Read",
     rating: 5,
     notes: "The quintessential sci-fi epic about politics, religion, and ecology."
