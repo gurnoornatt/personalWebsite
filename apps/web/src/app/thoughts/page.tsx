@@ -59,12 +59,12 @@ export default function ThoughtsPage() {
       <div className="w-full space-y-10">
         {/* Header */}
         <div className="flex justify-center items-center">
-          <h1 className="text-2xl font-medium">Thoughts</h1>
+          <h1 className="text-xl font-medium">Thoughts</h1>
         </div>
         
         {/* Navigation Link */}
         <div className="flex justify-center items-center">
-          <Link href="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <Link href="/" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
             Gurnoor Natt
           </Link>
         </div>
@@ -73,12 +73,12 @@ export default function ThoughtsPage() {
         {isLoading ? (
           <div className="flex justify-center py-6">
             <div className="animate-pulse text-center">
-              <p className="text-muted-foreground">Loading thoughts...</p>
+              <p className="text-muted-foreground text-xs">Loading thoughts...</p>
             </div>
           </div>
         ) : thoughts.length === 0 ? (
           <div className="text-center py-6">
-            <p className="text-muted-foreground">No thoughts yet.</p>
+            <p className="text-muted-foreground text-xs">No thoughts yet.</p>
           </div>
         ) : (
           <div className="space-y-6 mt-6">
@@ -87,7 +87,7 @@ export default function ThoughtsPage() {
                 <div className="flex items-center space-x-2">
                   <time className="text-xs text-muted-foreground">{thought.date}</time>
                 </div>
-                <h2 className="text-base">
+                <h2 className="text-sm">
                   <Link 
                     href={`/thoughts/${thought.slug}`} 
                     className="hover:text-muted-foreground transition-colors"
@@ -95,7 +95,7 @@ export default function ThoughtsPage() {
                     {thought.title}
                   </Link>
                 </h2>
-                <p className="text-sm text-muted-foreground">{thought.excerpt}</p>
+                <p className="text-xs text-muted-foreground">{thought.excerpt}</p>
               </article>
             ))}
           </div>

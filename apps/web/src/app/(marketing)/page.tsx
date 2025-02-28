@@ -43,27 +43,23 @@ export default function Home() {
       <div className="w-full space-y-10">
         {/* Header with Name */}
         <div className="flex justify-center items-center">
-          <h1 className="text-2xl font-medium">Gurnoor Natt</h1>
+          <h1 className="text-xl font-medium">Gurnoor Natt</h1>
         </div>
 
         {/* Navigation */}
         <div className="flex justify-center items-center space-x-6">
-          <Link href="/thoughts" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <Link href="/thoughts" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
             Thoughts
           </Link>
-          <Link href="/books" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <Link href="/books" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
             Books
           </Link>
         </div>
 
         {/* Bio Section */}
         <div className="space-y-4 mt-8">
-          <p className="text-base">
-            Software engineering bandwidth and genius ideas are the bottlenecks to rapid AI progress. 
-            <Link href="https://cursor.sh" className="mx-1 hover:underline">
-              Cursor
-            </Link>
-            is our attempt at solving the former. In doing so, more talent, effort, and resources can be devoted to the latter.
+          <p className="text-sm">
+            Countless challenges dim humanity's light. Vocal is my stand to harness artifical intelligence. This way, we lift lives and spark hope together now.
           </p>
         </div>
 
@@ -71,7 +67,7 @@ export default function Home() {
         <div className="flex flex-col space-y-2 mt-8">
           <Link 
             href="https://x.com/noorcmd" 
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            className="text-xs text-muted-foreground hover:text-foreground transition-colors"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -79,7 +75,7 @@ export default function Home() {
           </Link>
           <Link 
             href="https://github.com/gurnoornatt" 
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            className="text-xs text-muted-foreground hover:text-foreground transition-colors"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -87,7 +83,7 @@ export default function Home() {
           </Link>
           <Link 
             href="https://www.linkedin.com/in/gurnoor-natt-24577a245/" 
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            className="text-xs text-muted-foreground hover:text-foreground transition-colors"
             target="_blank"
             rel="noopener noreferrer"
           >

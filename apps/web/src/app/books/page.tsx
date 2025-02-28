@@ -74,12 +74,12 @@ export default function BooksPage() {
       <div className="w-full space-y-10">
         {/* Header */}
         <div className="flex justify-center items-center">
-          <h1 className="text-2xl font-medium">Books</h1>
+          <h1 className="text-xl font-medium">Books</h1>
         </div>
         
         {/* Navigation Link */}
         <div className="flex justify-center items-center">
-          <Link href="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <Link href="/" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
             Gurnoor Natt
           </Link>
         </div>
@@ -88,18 +88,18 @@ export default function BooksPage() {
         {isLoading ? (
           <div className="flex justify-center py-6">
             <div className="animate-pulse text-center">
-              <p className="text-muted-foreground">Loading books...</p>
+              <p className="text-muted-foreground text-xs">Loading books...</p>
             </div>
           </div>
         ) : books.length === 0 ? (
           <div className="text-center py-6">
-            <p className="text-muted-foreground">No books added yet.</p>
+            <p className="text-muted-foreground text-xs">No books added yet.</p>
           </div>
         ) : (
           <div className="space-y-8 mt-6">
             {books.map((book) => (
               <div key={book.id} className="flex space-x-4">
-                <div className="relative w-20 h-30 flex-shrink-0 overflow-hidden rounded-sm">
+                <div className="relative w-16 h-24 flex-shrink-0 overflow-hidden rounded-sm">
                   {book.coverImage ? (
                     <Image
                       src={book.coverImage}
@@ -118,8 +118,8 @@ export default function BooksPage() {
                   )}
                 </div>
                 <div className="flex flex-col space-y-1">
-                  <h2 className="text-base">{book.title}</h2>
-                  <p className="text-sm text-muted-foreground">{book.author}</p>
+                  <h2 className="text-sm">{book.title}</h2>
+                  <p className="text-xs text-muted-foreground">{book.author}</p>
                   <div className="flex items-center space-x-2">
                     <span className="text-xs text-muted-foreground">
                       {book.status}
