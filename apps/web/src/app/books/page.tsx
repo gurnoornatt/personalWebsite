@@ -28,7 +28,7 @@ const initialBooks = [
     id: "3",
     title: "Superintelligence",
     author: "Nick Bostrom",
-    coverImage: "https://m.media-amazon.com/images/I/71wvKXWfcML._SL1500_.jpg",
+    coverImage: "https://m.media-amazon.com/images/I/61fdrEuPJwL._SL1500_.jpg",
     status: "Want to Read",
     rating: null,
     notes: ""
