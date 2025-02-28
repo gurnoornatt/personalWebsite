@@ -59,7 +59,7 @@ export default function Home() {
         {/* Bio Section */}
         <div className="space-y-4 mt-8">
           <p className="text-sm">
-            Countless challenges dim humanity's light. <Link href="https://vocalwaitlist.com" className="font-bold underline" target="_blank" rel="noopener noreferrer">Vocal</Link> is my stand to harness artifical intelligence. This way, we lift lives and spark hope together now.
+            Countless challenges dim humanity's light. <Link href="https://vocalwaitlist.com" className="font-bold underline" target="_blank" rel="noopener noreferrer">Vocal</Link> is my stand to harness accessible intelligence. This way, we lift lives and spark hope together now.
           </p>
         </div>
 
