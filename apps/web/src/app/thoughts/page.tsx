@@ -9,14 +9,14 @@ const initialThoughts = [
     id: "1",
     title: "The Future of AI in Speech Therapy",
     excerpt: "How AI can revolutionize speech therapy for neurodivergent children...",
-    date: "2025-02-27",
+    date: "2025-04-07",
     slug: "future-of-ai-speech-therapy"
   },
   {
     id: "2",
     title: "Building Accessible Technology",
     excerpt: "The importance of accessibility in technology development...",
-    date: "2025-02-27",
+    date: "2025-04-07",
     slug: "building-accessible-technology"
   },
 ];
