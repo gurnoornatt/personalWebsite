@@ -81,14 +81,6 @@ export default function Home() {
           >
             Github
           </Link>
-          <Link 
-            href="https://www.linkedin.com/in/gurnoor-natt-24577a245/" 
-            className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LinkedIn
-          </Link>
         </div>
       </div>
     </main>
